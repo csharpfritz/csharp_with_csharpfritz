@@ -1,6 +1,4 @@
-FROM jupyter/base-notebook:latest
-
-# Install .NET CLI dependencies
+FROM csharpfritz/fritznotebook:1
 
 ARG NB_USER=jovyan
 ARG NB_UID=1000
