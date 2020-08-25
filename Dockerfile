@@ -52,16 +52,10 @@ RUN dotnet_sdk_version=3.1.301 \
     # Trigger first run experience by running arbitrary cmd
     && dotnet help
 
-# Copy notebooks
-
-COPY ./notebooks/ ${HOME}/notebooks/
-
 # Copy package sources
 
 COPY ./NuGet.config ${HOME}/nuget.config
 
-RUN chown -R ${NB_UID} ${HOME}
-USER ${USER}
 
 #Install nteract 
 RUN pip install nteract_on_jupyter
@@ -83,3 +77,8 @@ ENV DOTNET_TRY_CLI_TELEMETRY_OPTOUT=false
 
 # Set root to notebooks
 WORKDIR ${HOME}/notebooks/
+
+# Copy notebooks
+COPY ./notebooks/ ${HOME}/notebooks/
+RUN chown -R ${NB_UID} ${HOME}
+USER ${USER}
