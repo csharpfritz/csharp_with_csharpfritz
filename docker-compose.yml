@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+    notebook:
+        build:
+            context: .
+        ports:
+          - "8888:8888"
+        volumes:
+          - ./notebooks/:/home/jovyan/notebooks/
