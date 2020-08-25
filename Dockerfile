@@ -1,4 +1,5 @@
-FROM csharpfritz/fritznotebook:1
+# FROM fritznotebook:2
+FROM csharpfritz/fritznotebook:2
 
 # Set the environment variables
 ARG NB_USER=jovyan
@@ -11,6 +12,6 @@ ENV HOME /home/${NB_USER}
 WORKDIR ${HOME}/notebooks/
 
 # Copy notebooks
-COPY ./notebooks/ ${HOME}/notebooks/
-RUN chown -R ${NB_UID} ${HOME}
+COPY --chown=${NB_UID} ./notebooks/ ${HOME}/notebooks/
+# RUN chown -R ${NB_UID} ${HOME}
 USER ${USER}

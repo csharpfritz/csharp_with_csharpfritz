@@ -81,5 +81,5 @@ ENV DOTNET_TRY_CLI_TELEMETRY_OPTOUT=false
 
 # # Copy notebooks
 # COPY ./notebooks/ ${HOME}/notebooks/
-# RUN chown -R ${NB_UID} ${HOME}
+RUN chown -R ${NB_UID} ${HOME}
 # USER ${USER}
