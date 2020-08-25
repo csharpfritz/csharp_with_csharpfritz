@@ -10,4 +10,3 @@ Start locally with docker-compose:
 ```shell
 docker-compose up
 ```
-=======
