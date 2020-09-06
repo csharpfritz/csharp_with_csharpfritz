@@ -4,6 +4,7 @@ using System.CommandLine.Invocation;
 using System.Threading.Tasks;
 using Microsoft.DotNet.Interactive;
 using Microsoft.DotNet.Interactive.Events;
+using Microsoft.DotNet.Interactive.Formatting;
 
 namespace NotebookUnit
 {
@@ -14,28 +15,38 @@ namespace NotebookUnit
 
       var testCommand = new Command("#!test", "Run the tests in this notebook")
       {
-        new Option<string>("-s", "Dunno why I'm adding this, I just want it to run")
+        new Option<Action[]>(new string[] {"-t", "--tests" }, () => new Action[] { }, "Specify tests to run")
       };
 
-      testCommand.Handler = CommandHandler.Create(async (KernelInvocationContext context) =>
-      {
-        context.Publish(
-        new DisplayedValueProduced
-          ("This is a test",
-          context.Command,
-          new[] { new FormattedValue("text/plain", "This is my formatted value") }
-          )
-        );
-      });
+      testCommand.Handler =
+      CommandHandler.Create(async (Action[] tests, KernelInvocationContext context) =>
+        RunTests(tests, context));
 
       kernel.AddDirective(testCommand);
 
-      // This doesn't appear to be working
-      //if (KernelInvocationContext.Current is { } context)
-      //{
-      //    await context.DisplayAsync($"`{nameof(RunTestsMagicCommand)}` is loaded. It adds unit test capabilities");
-      //}
+      if (KernelInvocationContext.Current is { } context)
+      {
+        await context.DisplayAsync($"`{nameof(RunTestsMagicCommand)}` is loaded. It enables testing in notebooks", "text/markdown");
+      }
 
     }
-  }
+
+		private object RunTests(Action[] tests, KernelInvocationContext context)
+		{
+
+      if (tests == null || tests.Length == 0) {
+        context.Fail(message: "No tests");
+        return null;
+			}
+
+      context.Publish(new DisplayedValueProduced("Tests to be run", context.Command, new[] {
+        new FormattedValue(PlainTextFormatter.MimeType, "Tests will be run")
+      }));
+
+      return new object();
+
+		}
+
+
+	}
 }
