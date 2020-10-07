@@ -13,6 +13,10 @@
 		"ms-dotnettools.csharp",
 		"donjayamanne.jupyter",
 		"yzhang.markdown-all-in-one",
-		"ms-dotnettools.dotnet-interactive-vscode"
-	]
+		"ms-dotnettools.dotnet-interactive-vscode",
+		"streetsidesoftware.code-spell-checker"
+	],
+	// "mounts": [
+	// 	"source=${localWorkspaceFolder}/notebooks,target=/home/jovyan/notebooks/,type=bind,consistency=cached"
+	// ]
 }
