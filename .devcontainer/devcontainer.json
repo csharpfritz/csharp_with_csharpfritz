@@ -1,0 +1,18 @@
+{
+	"name": "C# with CSharpFritz",
+	"dockerComposeFile": [
+		"../docker-compose.yml",
+	],
+	"shutdownAction": "stopCompose",
+	"service": "notebook",
+	"workspaceFolder": "/home/jovyan/notebooks/",
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"extensions": [
+		"ms-dotnettools.csharp",
+		"donjayamanne.jupyter",
+		"yzhang.markdown-all-in-one",
+		"ms-dotnettools.dotnet-interactive-vscode"
+	]
+}
