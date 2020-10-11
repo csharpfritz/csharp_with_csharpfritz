@@ -1,5 +1,5 @@
 # FROM fritznotebook:2
-FROM csharpfritz/fritznotebook:2
+FROM csharpfritz/fritznotebook:1.0.148003
 
 # Set the environment variables
 ARG NB_USER=jovyan
