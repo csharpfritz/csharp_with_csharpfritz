@@ -11,6 +11,7 @@
 	},
 	"extensions": [
 		"ms-dotnettools.csharp",
+		"ms-python.python",
 		"donjayamanne.jupyter",
 		"yzhang.markdown-all-in-one",
 		"ms-dotnettools.dotnet-interactive-vscode",
