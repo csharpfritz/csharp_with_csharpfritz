@@ -1,0 +1,23 @@
+{
+	"name": "C# with CSharpFritz",
+	"dockerComposeFile": [
+		"../docker-compose.yml",
+	],
+	"shutdownAction": "stopCompose",
+	"service": "notebook",
+	"workspaceFolder": "/home/jovyan/notebooks/",
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"extensions": [
+		"ms-dotnettools.csharp",
+		"ms-python.python",
+		"donjayamanne.jupyter",
+		"yzhang.markdown-all-in-one",
+		"ms-dotnettools.dotnet-interactive-vscode",
+		"streetsidesoftware.code-spell-checker"
+	],
+	// "mounts": [
+	// 	"source=${localWorkspaceFolder}/notebooks,target=/home/jovyan/notebooks/,type=bind,consistency=cached"
+	// ]
+}
