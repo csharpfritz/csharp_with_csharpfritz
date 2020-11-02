@@ -154,3 +154,8 @@ You can then add projects to it with this command:
 ```console
 dotnet sln add Logic
 ```
+
+## Other files for our Logic project
+
+I have added files for an `Order`, `OrderItem`, and a `CouponEvaluator` class to the `Logic` project.  Take a moment to inspect them and add them to your project by copying them into your `Logic` project folder.
+
