@@ -4,4 +4,4 @@ We've learned a lot about how to use the C# language, but have not yet actually 
 
 ## The .NET SDK
 
-The .NET SDK is the term we use to refer to the tools that you use to compile and build your applications.  
+The .NET SDK is the term we use to refer to the tools that you use to compile and build your applications.  You can get a copy of the tools you need from [https://get.dot.net](https://get.dot.net)  There are separate instructions available for use on Windows, Mac, or Linux.  Once installed, you will be able 
