@@ -8,7 +8,7 @@ The .NET SDK is the term we use to refer to the tools that you use to compile an
 
 The SDK delivers a series of templates and tools that will help you with your .NET programming tasks.  The primary tool that you will be using is the `dotnet` command-line application.  You can verify that your installation procedure worked properly by executing the following at the command-line:
 
-```console
+```dotnetcli
 dotnet --info
 ```
 
@@ -62,7 +62,7 @@ dotnet new console -o App1
 
 Enter the App1 folder and run the new application with this command:
 
-```console
+```dotnetcli
 dotnet run
 ```
 
@@ -91,7 +91,7 @@ This XML-based file contains all of the information necessary to build an execut
 
 The most common type of project that you will create is the `classlib` template that defines a class library.  A class library is a project that isn't directly executable but is a re-usable unit of code that can be packaged and referenced by many different projects and applications.  In this session, let's create a simple class library with some logic for managing a simple shopping cart, calculating totals, and applying coupon codes.  The final source code for the session can be found in [this folder](https://github.com/csharpfritz/csharp_with_csharpfritz/tree/main/sessions/0110-UnitTests).  let's start with a project called `Logic`:
 
-```console
+```dotnetcli
 dotnet new classlib -o Logic
 ```
 
@@ -121,7 +121,7 @@ namespace Logic
 
 We can then build our project, compiling it and turning into a referencable unit using the command:
 
-```console
+```dotnetcli
 dotnet build
 ```
 
@@ -145,17 +145,179 @@ The solution file is typically stored in a folder _ABOVE_ the projects reference
 
 The solution file is defined in a format specific to Visual Studio and it is recommended that you do not handle the file directly.  You can create a new solution file with the dotnet SDK:
 
-```console
+```dotnetcli
 dotnet new sln
 ```
 
 You can then add projects to it with this command:
 
-```console
+```dotnetcli
 dotnet sln add Logic
 ```
 
-## Other files for our Logic project
+### Other files for our Logic project
 
-I have added files for an `Order`, `OrderItem`, and a `CouponEvaluator` class to the `Logic` project.  Take a moment to inspect them and add them to your project by copying them into your `Logic` project folder.
+I have added files for an `Order`, `OrderItem`, and a `CouponEvaluator` class to the `Logic` project.  Take a moment to inspect them and add them to your project by copying them into your `Logic` project folder.  Verify that everything is placed appropriately in your project by compiling the Logic class library again with this command:
 
+```dotnetcli
+dotnet build
+```
+
+The output should report no errors.
+
+## Unit Tests
+
+In software, there are many ways to write and automate tests for our applications.  We test in various scopes of the application from full system tests, to integration tests, to the smallest level - unit tests.  [Wikipedia defines unit testing](https://en.wikipedia.org/wiki/Unit_testing) as:
+
+>    In computer programming, unit testing is a software testing method by which individual units of source code—sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures—are tested to determine whether they are fit for use
+
+To test our C# code, we can use several different test frameworks to build a **test project** that contains all of our tests.  Some of the most popular test frameworks available include:
+
+- [MSTest](https://github.com/microsoft/testfx) - a test framework built by Microsoft and originally designed to be used with Visual Studio
+- [NUnit](https://nunit.org) - a simple test framework that started as a port of the Java-based JUnit framework
+- [xUnit](https://xunit.github.io/) - a test framework that grew out of NUnit to adhere more closely to the .NET conventions and typical developer usage.
+
+Each of these frameworks ships a template project with the .NET SDK.  For this session, we will focus on xUnit, but all of the frameworks function similarly.
+
+### Adding an xUnit test project to our solution
+
+Let's create and add a new project called `Test` to the solution using the command line instructions:
+
+```dotnetcli
+dotnet new xunit -o Test
+dotnet sln add Test
+```
+
+Our test project is now part of the solution, and we can build **BOTH** projects by running the `dotnet build` command in the same folder as the solution.  That doesn't add much value at this point, but is a starting point for us to reference later.
+
+### Creating a reference between two projects in the same solution
+
+Let's create a **reference** from the `Test` project to the `Logic` project so that we can start referring to objects in the `Logic` project in our `Test` project.  Execute the following code at the command-line in the `Test` project folder (replace slash appropriately for your operating system):
+
+```dotnetcli
+dotnet add reference ..\Logic
+```
+
+### Writing our first test
+
+Let's start writing our first test and inspecting the `Logic` project.  The content of the default code file in our test project looks like the following:
+
+```csharp
+using System;
+using Xunit;
+
+namespace Test
+{
+    public class UnitTest1
+    {
+        [Fact]
+        public void Test1()
+        {
+
+        }
+    }
+}
+```
+
+A `[Fact]` is an attribute that defines a method inside of a class that xUnit should execute.  We can execute this method with this on the command-line:
+
+```dotnetcli
+dotnet test
+```
+
+The `dotnet test` method will do the following steps:
+
+1. Restore any missing package references from NuGet
+1. Compile the test project
+1. Execute the xUnit Test Runner against the `Test` project 
+1. Search for any methods decorated with attributes like `[Fact] that indicate they should be used for testing
+1. Execute those identified methods
+1. Report the results
+
+The results from this first simple test should look like the following:
+
+```
+Microsoft (R) Test Execution Command Line Tool Version 16.8.0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     1, Skipped:     0, Total:     1, Duration: 1 ms - Test.dll (net5.0)
+```
+
+In 1ms of test time, we learned that all our test executed successfully.  We didn't test much, and in unit testing practices we try to make sure our tests FAIL first so that we know that they are actually testing something of value that we can fix.  Let's update that `Test1` method with this code:
+
+```csharp
+[Fact]
+public void Test1()
+{
+  Assert.Equal(2,3);
+}
+```
+
+Clearly, 2 does not equal 3... and we are using the xUnit `Assert` tool to investigate if these two values are equal.  When we execute our `dotnet test` command this time the following output is presented:
+
+```
+Microsoft (R) Test Execution Command Line Tool Version 16.8.0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.45]     Test.UnitTest1.Test1 [FAIL]
+  Failed Test.UnitTest1.Test1 [4 ms]
+  Error Message:
+   Assert.Equal() Failure
+Expected: 2
+Actual:   3
+  Stack Trace:
+     at Test.UnitTest1.Test1() in C:\dev\csharp_with_csharpfritz\sessions\0110-UnitTests\Test\UnitTest1.cs:line 11
+
+Failed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 4 ms - Test.dll (net5.0)
+```
+
+Clearly a failure as expected and it reports which line the error occurred on as well as the value that was expected and the value that was presented.  This is a typical pattern you will find in unit testing:  `Assert(ValueExpected, ValueToInspect)`
+
+### Re-running tests as code changes
+
+Now that you've run your first test, you should see how painful this is going to be to run and re-run tests as you're writing code.  There are many different test runners that are embedded in our programming tools, and you can use them with great success.  The simplest automated test runner you can use is the `dotnet watch` command that will re-execute our tests whenever a file changes in the test project or the projects it references.
+
+```dotnetcli
+dotnet watch test
+```
+
+## Our first Logic test
+
+Let's first inspect the 
+
+### Fixing the code
+
+## Making Tests Better
+
+- Fast
+- Isolated
+- Repeatable
+ 
+### AAA Pattern in writing tests
+
+Arrange
+
+Assert
+
+Act
+
+### Naming Tests
+
+- Name of method being tested
+- Scenario of the test
+- Expected behavior
+
+"Given... When... Then" pattern 
+
+### Setup and Teardown
+
+### Avoid Multiple Asserts
+
+### Remove static dependencies
+
+"Two for Tuesday" problem
