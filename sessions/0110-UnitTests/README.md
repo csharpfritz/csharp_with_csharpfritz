@@ -317,12 +317,3 @@ Act
 "Given... When... Then" pattern 
 
 ### Setup and Teardown
-
-### Mocks / Stubs
-
-### Avoid Multiple Asserts
-
-### Remove static dependencies
-
-"Two for Tuesday" problem
-

@@ -9,7 +9,7 @@ namespace Logic
       // Save 10% with the SAVE10 coupon code
       if (order.CouponCode == "SAVE10") {
         order.CouponSavings = order.TotalCost * 0.1m;
-      } 
+      }
 
     }
 
