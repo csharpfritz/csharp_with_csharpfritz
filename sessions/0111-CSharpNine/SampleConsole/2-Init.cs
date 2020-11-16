@@ -15,6 +15,7 @@ namespace SampleConsole {
 
 		public static void Demo1() {
 
+/*
 			var l = new LogEntry {
 				Severity = LogSeverity.Error,
 				LogTimestampUtc = DateTime.UtcNow,
@@ -22,6 +23,7 @@ namespace SampleConsole {
 			};
 
 			WriteLine(l);
+*/
 
 		}
 
