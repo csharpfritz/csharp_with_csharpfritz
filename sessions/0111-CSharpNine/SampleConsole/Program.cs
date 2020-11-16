@@ -8,6 +8,7 @@ namespace SampleConsole
 		{
 			
 			Records.Demo();
+			// Init.Demo();
 
 		}
 	}

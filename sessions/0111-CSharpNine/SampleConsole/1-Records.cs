@@ -11,13 +11,13 @@ namespace SampleConsole
 		{
 
 			// Create a record object and inspect its string and equals
-			// Demo1();
+			Demo1();
 
 			// Inheritance with records
 			// Demo2();
 
 			// Deconstruction and Cloning
-			Demo3();
+			//Demo3();
 
 		}
 
@@ -31,7 +31,7 @@ namespace SampleConsole
 			WriteLine(p);
 
 			// Change the record object
-			//p.FirstName = "scott";
+			//p.LastName = "smith";
 
 			// second record equals first
 			// var s = new Person("jeff", "fritz");
