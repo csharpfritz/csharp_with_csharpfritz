@@ -288,11 +288,13 @@ dotnet watch test
 
 ## Our first Logic test
 
-Let's first inspect the 
+Let's first inspect the Order object 
 
 ### Fixing the code
 
 ## Making Tests Better
+
+There's a great article in the .NET docs about [unit testing best practices](https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices) that we will summarize here as part of working on this test project.
 
 - Fast
 - Isolated
@@ -315,9 +317,3 @@ Act
 "Given... When... Then" pattern 
 
 ### Setup and Teardown
-
-### Avoid Multiple Asserts
-
-### Remove static dependencies
-
-"Two for Tuesday" problem
