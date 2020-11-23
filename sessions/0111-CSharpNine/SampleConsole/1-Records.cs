@@ -11,13 +11,13 @@ namespace SampleConsole
 		{
 
 			// Create a record object and inspect its string and equals
-			Demo1();
+			//Demo1();
 
 			// Inheritance with records
 			// Demo2();
 
 			// Deconstruction and Cloning
-			//Demo3();
+			Demo3();
 
 		}
 
@@ -28,14 +28,30 @@ namespace SampleConsole
 
 			// Create a new record object and inspect its string
 			var p = new Person("jeff", "fritz");
-			WriteLine(p);
+			// WriteLine(p.FirstName);
+
+			//WriteLine(new PersonClass("jeff","fritz"));
 
 			// Change the record object
 			//p.LastName = "smith";
 
 			// second record equals first
-			// var s = new Person("jeff", "fritz");
-			// WriteLine( p == s);
+			var s = new Person("jeff", "fritz");
+			WriteLine( p == s);
+
+		}
+
+		public class PersonClass {
+			public string FirstName { get; set; }
+			public string LastName { get; set; }
+
+			public override string ToString()
+			{
+				return $"{FirstName} {LastName}";
+			}
+
+			public PersonClass(string first, string last) =>
+			(FirstName, LastName) = (first, last);
 
 		}
 
@@ -59,11 +75,11 @@ namespace SampleConsole
 
 			// Records support inheritance
 
-			var p = new CoolPerson("jeff", "fritz");
-			WriteLine(p);
+			// var p = new CoolPerson("jeff", "fritz");
+			// WriteLine(p);
 
 			var r = new Rockstar("Freddie", "Mercury", "Queen");
-			WriteLine(r);
+			// WriteLine(r);
 
 			WriteLine(r as CoolPerson);
 
@@ -85,8 +101,9 @@ namespace SampleConsole
 			WriteLine($"First: {first} Last: {last}");
 
 			// Clone using the WITH expression
-			// var s = p with { FirstName = "scott"};
-			// WriteLine(s);
+			var s = p with { FirstName="scott" };
+			WriteLine(s);
+			WriteLine(p);
 
 		}
 
