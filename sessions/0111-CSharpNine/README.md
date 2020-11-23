@@ -93,3 +93,4 @@ https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8?WT.mc_id=visua
 Constructors can now be simplified when the type is known to just a `new()` statement.
 
 Check the samples in `5-NewTarget.cs`
+

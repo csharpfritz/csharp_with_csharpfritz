@@ -22,7 +22,6 @@ namespace SampleConsole {
 			};
 
 			WriteLine(l);
-			// l.Severity = LogSeverity.Info;
 
 		}
 

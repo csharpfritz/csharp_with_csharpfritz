@@ -17,7 +17,7 @@ namespace SampleConsole
 			// Demo2();
 
 			// Deconstruction and Cloning
-			Demo3();
+			//Demo3();
 
 		}
 

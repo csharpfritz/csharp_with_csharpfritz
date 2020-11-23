@@ -9,10 +9,10 @@ namespace SampleConsole
 		{
 			
 			// 1. Records
-			Records.Demo();
+			// Records.Demo();
 
 			// 2. Init Only Setters
-			//Init.Demo();
+			// Init.Demo();
 
 			// 3. Top Level Programs
 
@@ -22,8 +22,8 @@ namespace SampleConsole
 			// 5. Target-Typed New Expressions
 			// NewTarget.Demo();
 
+
 		}
 	}
-
 }
 
