@@ -15,7 +15,6 @@ namespace SampleConsole {
 
 		public static void Demo1() {
 
-/*
 			var l = new LogEntry {
 				Severity = LogSeverity.Error,
 				LogTimestampUtc = DateTime.UtcNow,
@@ -23,17 +22,16 @@ namespace SampleConsole {
 			};
 
 			WriteLine(l);
-*/
 
 		}
 
 		public struct LogEntry {
 
-			public readonly LogSeverity Severity;
+			public LogSeverity Severity {get; init;}
 
-			public readonly DateTime LogTimestampUtc;
+			public DateTime LogTimestampUtc {get; init;}
 
-			public readonly string Description;
+			public string Description {get; init;}
 
 			public override string ToString()
 			{
