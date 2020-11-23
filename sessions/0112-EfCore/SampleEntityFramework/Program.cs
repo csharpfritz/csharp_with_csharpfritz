@@ -4,69 +4,90 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SampleEntityFramework
 {
-  class Program
-  {
-    static void Main(string[] args)
-    {
+	class Program
+	{
+		static void Main(string[] args)
+		{
 
-      var db = new AppDbContext();
-      //GetPosts(db);      
-      //AddPost(db);
-      //UpdatePost(db);
-      // DeletePost(db);
+			var db = new AppDbContext();
+			//GetPosts(db);      
+			//AddPost(db);
+			//UpdatePost(db);
+			// DeletePost(db);
 
-    }
+			AddPostWithAuthor(db);
+			
+
+		}
+
 
     private static void DeletePost(AppDbContext db)
-    {
-      
-      db.Posts.Remove(db.Posts.First(p => p.Id == 1));
-      db.SaveChanges();
+		{
+			
+			db.Posts.Remove(db.Posts.First(p => p.Id == 1));
+			db.SaveChanges();
 
-      GetPosts(db);
+			GetPosts(db);
+
+		}
+
+		private static void GetPosts(AppDbContext db)
+		{
+
+				var posts = db.Posts.AsNoTracking();
+				if (!posts.Any()) {
+						Console.WriteLine("** No blog posts found **");
+						return;
+				}
+
+				foreach (var p in posts)
+				{
+						Console.WriteLine(p.ToString());
+				}
+
+		}
+
+		private static void AddPost(AppDbContext db)
+		{
+			var newPost = new BlogPost
+			{
+				Title = "My first post",
+				PublishedUtc = DateTime.UtcNow,
+				Content = "This is my first post and I am very proud of it"
+			};
+
+			db.Posts.Add(newPost);
+			db.SaveChanges();
+		}
+
+		private static void UpdatePost(AppDbContext db)
+		{
+			
+				var post = db.Posts.First(p => p.Id == 1);
+				post.Title = "I hacked your post!";
+				db.SaveChanges();
+
+				GetPosts(db);    
+
+		}
+
+    private static void AddPostWithAuthor(AppDbContext db)
+    {
+
+			var a = new Author() {
+				Name = "Jeff Fritz",
+				TwitterUsername = "csharpfritz"
+			};
+			var newPost = new BlogPost {
+				Author = a,
+				Title = "Live Coding with Twitch",
+				Content = "Today is my 3 year anniversary live coding on Twitch..."
+			};
+
+			db.Posts.Add(newPost);
+			db.SaveChanges();
 
     }
 
-    private static void GetPosts(AppDbContext db)
-    {
-
-        var posts = db.Posts.AsNoTracking();
-        if (!posts.Any()) {
-            Console.WriteLine("** No blog posts found **");
-            return;
-        }
-
-        foreach (var p in posts)
-        {
-            Console.WriteLine(p.ToString());
-        }
-
-    }
-
-    private static void AddPost(AppDbContext db)
-    {
-      var newPost = new BlogPost
-      {
-        Title = "My first post",
-        PublishedUtc = DateTime.UtcNow,
-        Content = "This is my first post and I am very proud of it"
-      };
-
-      db.Posts.Add(newPost);
-      db.SaveChanges();
-    }
-
-    private static void UpdatePost(AppDbContext db)
-    {
-      
-        var post = db.Posts.First(p => p.Id == 1);
-        post.Title = "I hacked your post!";
-        db.SaveChanges();
-
-        GetPosts(db);    
-
-    }
-
-
-  }
+	}
 }

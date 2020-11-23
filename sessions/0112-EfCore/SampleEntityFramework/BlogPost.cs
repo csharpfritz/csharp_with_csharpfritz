@@ -16,6 +16,9 @@ namespace SampleEntityFramework
       return $"{Title} ({Id})";
     }
 
+    public int AuthorId { get; set; }
+    public Author Author { get; set; }
+
   }
 
 }
