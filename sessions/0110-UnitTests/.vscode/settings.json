@@ -1,0 +1,5 @@
+{
+	"dotnet-test-explorer.testProjectPath": "**/*Test.@(csproj|vbproj|fsproj)",
+	"dotnet-test-explorer.autoWatch": true,
+	"dotnet-test-explorer.showCodeLens": true
+}

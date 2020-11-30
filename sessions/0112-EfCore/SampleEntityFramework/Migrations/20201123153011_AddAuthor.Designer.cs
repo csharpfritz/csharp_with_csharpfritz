@@ -9,7 +9,7 @@ using SampleEntityFramework;
 namespace SampleEntityFramework.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20201123115116_Add Author")]
+    [Migration("20201123153011_AddAuthor")]
     partial class AddAuthor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,12 +27,12 @@ namespace SampleEntityFramework.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("TwitterUsername")
+                    b.Property<string>("TwitterUserName")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Author");
                 });
 
             modelBuilder.Entity("SampleEntityFramework.BlogPost", b =>
@@ -41,7 +41,7 @@ namespace SampleEntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AuthorId")
+                    b.Property<int?>("AuthorId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
@@ -64,9 +64,7 @@ namespace SampleEntityFramework.Migrations
                 {
                     b.HasOne("SampleEntityFramework.Author", "Author")
                         .WithMany("Posts")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorId");
 
                     b.Navigation("Author");
                 });

@@ -116,6 +116,10 @@ dotnet ef dbcontext scaffold "Data Source=appdb.db" Microsoft.EntityFrameworkCor
 
 ## CRUD Operations
 
+View SQL statement with
+query.ToQueryString()
+UseSqlite().LogTo()
+
 ### Reading Data
 WithNoTracking()
 
@@ -130,9 +134,5 @@ WithNoTracking()
 Foreign Keys / Navigation property
 https://docs.microsoft.com/en-us/ef/core/modeling/relationships
 
-## Working with Files 
-
-### Streams
-
-### File.Open
-
+Many to Many
+![Many to Many relationship](img/ManyToMany.PNG)

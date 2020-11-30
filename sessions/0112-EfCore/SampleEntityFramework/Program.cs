@@ -10,31 +10,27 @@ namespace SampleEntityFramework
 		{
 
 			var db = new AppDbContext();
-			//GetPosts(db);      
-			//AddPost(db);
-			//UpdatePost(db);
+			// AddPost(db);
+			//  GetPosts(db);      
+			// UpdatePost(db);
 			// DeletePost(db);
 
-			AddPostWithAuthor(db);
+			//AddPostWithAuthor(db);
+			// CreateTagsAndAddToFirstPost(db);
+			GetPosts(db);      
 			
-
-		}
-
-
-    private static void DeletePost(AppDbContext db)
-		{
-			
-			db.Posts.Remove(db.Posts.First(p => p.Id == 1));
-			db.SaveChanges();
-
-			GetPosts(db);
 
 		}
 
 		private static void GetPosts(AppDbContext db)
 		{
 
-				var posts = db.Posts.AsNoTracking();
+				// var posts = db.Posts.AsNoTracking().Where(p => p.Id < 10);
+				var posts = db.Posts
+					.Include(p => p.Author)
+					.Include(p => p.Tags)
+					.AsNoTracking().Where(p => p.Id < 10);
+				// Console.WriteLine(posts.ToQueryString());
 				if (!posts.Any()) {
 						Console.WriteLine("** No blog posts found **");
 						return;
@@ -64,19 +60,31 @@ namespace SampleEntityFramework
 		{
 			
 				var post = db.Posts.First(p => p.Id == 1);
-				post.Title = "I hacked your post!";
+				post.Title = "'-- DROP TABLE Posts;";
 				db.SaveChanges();
 
 				GetPosts(db);    
 
 		}
 
+		private static void DeletePost(AppDbContext db)
+		{
+			
+			db.Posts.Remove(db.Posts.First(p => p.Id == 1));
+			db.SaveChanges();
+
+			GetPosts(db);
+
+		}
+
+
+
     private static void AddPostWithAuthor(AppDbContext db)
     {
 
 			var a = new Author() {
 				Name = "Jeff Fritz",
-				TwitterUsername = "csharpfritz"
+				TwitterUserName = "csharpfritz"
 			};
 			var newPost = new BlogPost {
 				Author = a,
@@ -88,6 +96,27 @@ namespace SampleEntityFramework
 			db.SaveChanges();
 
     }
+
+		private static void CreateTagsAndAddToFirstPost(AppDbContext db)
+		{
+			
+			var personalTag = new Tag { Name="Personal"};
+			var techTag = new Tag { Name="Technical"};
+
+			db.Tags.AddRange(personalTag, techTag);
+			
+			var firstPost = db.Posts.OrderBy(p => p.Id).First();
+			firstPost.Tags.Add(personalTag);
+
+			var secondPost = db.Posts.OrderBy(p => p.Id).Skip(1).First();
+			secondPost.Tags.Add(personalTag);
+			secondPost.Tags.Add(techTag);
+
+			db.SaveChanges();
+
+		}
+
+
 
 	}
 }

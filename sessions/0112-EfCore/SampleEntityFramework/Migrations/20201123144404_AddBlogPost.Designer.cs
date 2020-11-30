@@ -9,8 +9,8 @@ using SampleEntityFramework;
 namespace SampleEntityFramework.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20201123031131_First")]
-    partial class First
+    [Migration("20201123144404_AddBlogPost")]
+    partial class AddBlogPost
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

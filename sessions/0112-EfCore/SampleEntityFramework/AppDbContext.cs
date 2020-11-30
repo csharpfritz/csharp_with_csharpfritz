@@ -1,32 +1,25 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 
 namespace SampleEntityFramework
 {
 
-  public class AppDbContext : DbContext 
-  {
+	public class AppDbContext : DbContext {
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
 
-      var conn = @"Data Source=appdb.db;";
-      optionsBuilder.UseSqlite(conn);
+			var connString = "Data Source=appdb.db";
+			optionsBuilder.UseSqlite(connString);
+				// .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
 
-      base.OnConfiguring(optionsBuilder);
-    }
+			base.OnConfiguring(optionsBuilder);
+		}
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
+		public DbSet<BlogPost> Posts { get; set; }
 
-      
+		public DbSet<Tag> Tags { get; set; }
 
-      base.OnModelCreating(modelBuilder);
-    }
-
-    public DbSet<BlogPost> Posts { get; set; }
-
-    public DbSet<Author> Authors { get; set; }
-
-  }
-
+	}
+		
 }

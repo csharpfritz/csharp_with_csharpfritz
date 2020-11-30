@@ -10,21 +10,20 @@ namespace SampleEntityFramework.Migrations
                 name: "AuthorId",
                 table: "Posts",
                 type: "INTEGER",
-                nullable: false,
-                defaultValue: 0);
+                nullable: true);
 
             migrationBuilder.CreateTable(
-                name: "Authors",
+                name: "Author",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
-                    TwitterUsername = table.Column<string>(type: "TEXT", nullable: true)
+                    TwitterUserName = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Authors", x => x.Id);
+                    table.PrimaryKey("PK_Author", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
@@ -33,22 +32,22 @@ namespace SampleEntityFramework.Migrations
                 column: "AuthorId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Posts_Authors_AuthorId",
+                name: "FK_Posts_Author_AuthorId",
                 table: "Posts",
                 column: "AuthorId",
-                principalTable: "Authors",
+                principalTable: "Author",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Posts_Authors_AuthorId",
+                name: "FK_Posts_Author_AuthorId",
                 table: "Posts");
 
             migrationBuilder.DropTable(
-                name: "Authors");
+                name: "Author");
 
             migrationBuilder.DropIndex(
                 name: "IX_Posts_AuthorId",
