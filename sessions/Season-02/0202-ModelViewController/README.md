@@ -44,7 +44,7 @@ The `ConfigureServices` method now contains a different signature:
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-	services.AddControllersWithViews();
+  services.AddControllersWithViews();
 }
 ```
 
@@ -55,9 +55,9 @@ The Configure method ends with this content now:
 ```csharp
 app.UseEndpoints(endpoints =>
 {
-	endpoints.MapControllerRoute(
-		name: "default",
-		pattern: "{controller=Home}/{action=Index}/{id?}");
+  endpoints.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 });
 ```
 
@@ -79,13 +79,14 @@ A **Controller** is a fairly standard C# class that inherits from the `Controlle
 public class HomeController : Controller
 {
 
-	public IActionResult Index()
-	{
-		return View();
-	}
+  public IActionResult Index()
+  {
+    return View();
+  }
 
 }
 ```
+
 _Snippet of code from the HomeController.cs file_
 
 ### Action Methods
@@ -116,17 +117,129 @@ var myHat = new Product {Id=1, Name="C# Hat"};
 return View(myHat);
 ```
 
+In razor, you can then present data and interactions with this object by using the `Model` object.  
+
 ## Views
+
+ASP.NET Core uses the [Razor template system](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor) to format HTML output.  Razor allows you to mix C# and HTML tags by prefixing your C# code with an `@` symbol.
+
+You can simply place a variable or C# call after the `@` symbol to emit the string output of that code into the output.
+
+```razor
+
+Total items in your cart: @Cart.ItemCount
+
+```
+
+You can emit values mid-tag as well:
+
+```razor
+
+<input type="text" value="@Cart.ShippingAddress" />
+
+```
+
+If you need to output a `@` character in your HTML output, you can just add a second `@` character to indicate that it was escaped.  Also, if you want to explicitly declare a block of text, you can wrap it with the `<text>` tag.
+
+It's easy to write a loop or some conditional code with syntax like:
+
+```razor
+@if (true) {
+
+  <ul>
+    @foreach (var item in Items) 
+    {
+
+      <li>@item</li>
+
+  }
+  </ul>
+
+}
+```
+
+The above instances are called **implicit razor expressions** and you can write an **explicit razor expression** by wrapping your code with parenthesis like this:
+
+```razor
+<b>Minutes left today: @((DateTime.Today.AddDays(1) - DateTime.Now).TotalMinutes)</b>
+```
+
+By default, all text content emitted through code, like the `@item` element above is HTMLEncoded to prevent against cross-site scripting attacks.
+
+```razor
+	@("<b>bold text</b>")
+```
+
+renders:
+
+```html
+ &lt;b&gt;bold text&lt;/b&gt;
+```
+
+If you want to override this behavior, you can use the `Html.Raw` method
+
+```razor
+  @Html.Raw("<b>bold text</b>")
+```
+
+renders
+
+```html
+  <b>bold text</b>
+```
+
+Finally, you can write a block of code to be executed by wrapping it in curly braces:
+
+```razor
+@{
+  var yesterday = DateTime.Today.AddDays(-1);
+}
+
+<b>Yesterday was @yesterday.DayOfWeek</b>
+
+```
 
 ### Directives
 
-@model
+For MVC interactions with razor, there are a handful of directives that you can use to improve your interactions.  
 
-@using
+#### model
 
-@inject
+You can specify the type of the **Model** object that your controller passed into the template.  This will give your editor, if enabled, intellisense capabilities when referring to the `@Model` object in your code.
 
-@functions
+#### @using
+
+You can add `@using` statements to the top of your razor template in the same way they are added to a class to help shorten namespace references.
+
+```razor
+@using System.IO
+```
+
+#### @inject
+
+Perhaps you have a registered service object like a Logger or the application Configuration that you would like to access in your razor template.  You can make that object available with the `@inject` directive specifying a desired type and target variable name.
+
+```razor
+@inject ILogger logger
+@inject IConfiguration config
+```
+
+#### @functions
+
+You can define a block of code that contains functions, that can be called elsewhere in your razor template with the `@functions` block:
+
+```razor
+@functions {
+
+  public static int Sum(int arg1, int arg2)
+  {
+    return arg1 + arg2;
+  }
+
+}
+
+<b>@Sum(2,3)</b>
+```
 
 @section -- @RenderSection
 
@@ -140,8 +253,3 @@ Content()
 
 File()
 
-## Routing Attributes
-
-HttpGet()
-
-HttpPost()
