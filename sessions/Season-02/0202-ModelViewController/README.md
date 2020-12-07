@@ -117,3 +117,31 @@ return View(myHat);
 ```
 
 ## Views
+
+### Directives
+
+@model
+
+@using
+
+@inject
+
+@functions
+
+@section -- @RenderSection
+
+### Partial Views
+
+## Returning Other Content
+
+Json()
+
+Content()
+
+File()
+
+## Routing Attributes
+
+HttpGet()
+
+HttpPost()
