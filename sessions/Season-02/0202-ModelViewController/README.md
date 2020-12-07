@@ -6,7 +6,7 @@ In this session, we will learn about the standard architecture of the MVC user-i
 
 ## MVC Architecture 101
 
-![MVC Model](img/3-MVC.png)
+![MVC Model](img/3-MVC.PNG)
 
 Model, View, Controller...  its a common project architecture that can be found in different languages and technologies.  
 
