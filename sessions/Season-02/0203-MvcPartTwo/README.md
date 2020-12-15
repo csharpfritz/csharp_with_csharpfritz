@@ -27,4 +27,15 @@ For the first sample, let's use an HTML helper to post a simple search string to
 }
 ```
 
-Data will be
+### Step 2: The Actions
+
+### Validation
+
+ModelState / Validation - https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-5.0
+
+## Configuration
+
+IConfiguration
+
+https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-5.0
+
