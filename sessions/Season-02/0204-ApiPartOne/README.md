@@ -2,7 +2,7 @@
 
 ## Agenda
 
-- New API project templatea
+- New API project template
 - Simplest API with middleware
 - EVEN simpler API with middleware and C# 9 top-level programs
 - Model Binding
@@ -18,5 +18,3 @@
 ## Next Time
 - OpenAPI with Swashbuckle
 - gRPC
-
-

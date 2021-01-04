@@ -7,7 +7,7 @@ namespace _5_ModelBinding.Controllers {
 
   public class Contact {
     
-    public Contact(int id, string first, string last, int age)
+    public Contact(int id, string first, string last, int? age)
     {
         this.id=id;
         this.First=first;
@@ -17,11 +17,15 @@ namespace _5_ModelBinding.Controllers {
 
     public int id {get; set;}
     public string First {get; set;}
+
+    [Required(ErrorMessage="Lastname is required... try again")]
     public string Last {get; set;}
-    [Range(3,30)]
-    public int Age {get; set;}
+
+    [Range(3,30, ErrorMessage="We're looking for folks who are at least 3 years old")]
+    public int? Age {get; set;}
 
   }
+
 
   [ApiController]
   [Route("[controller]")]
@@ -40,14 +44,19 @@ namespace _5_ModelBinding.Controllers {
     }
 
     [HttpGet("{id}")]
-    public Contact GetById(int id) {
+    public ActionResult<Contact> GetById(int id) {
 
-      return _Contacts.FirstOrDefault(c => c.id == id);
+      var outContact = _Contacts.FirstOrDefault(c => c.id == id);
+
+      if (outContact == null) return NotFound();
+
+      return outContact;
 
     }
 
     [HttpPost]
     public ActionResult Add([FromBody]Contact newContact) {
+    // public ActionResult Add([FromBody]string first, [FromBody]string last, [FromBody]int age) {
 
       newContact.id = _Contacts.Max(c => c.id)+1;
       _Contacts.Add(newContact);

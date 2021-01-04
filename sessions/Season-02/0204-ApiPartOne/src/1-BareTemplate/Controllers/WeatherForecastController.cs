@@ -8,17 +8,17 @@ using Microsoft.Extensions.Logging;
 namespace _1_BareTemplate.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    [Route("api/WeatherForecast")]
+    public class FooController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<FooController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public FooController(ILogger<FooController> logger)
         {
             _logger = logger;
         }
@@ -27,6 +27,7 @@ namespace _1_BareTemplate.Controllers
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
@@ -35,5 +36,6 @@ namespace _1_BareTemplate.Controllers
             })
             .ToArray();
         }
+
     }
 }

@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using WebApiContrib.Core.Formatter.Csv;
 
 namespace _6_ContentFormatting
 {
@@ -29,10 +30,14 @@ namespace _6_ContentFormatting
         {
 
             services.AddControllers(options => {
-                // options.InputFormatters.Add(new VcardInputFormatter());
-                // options.OutputFormatters.Add(new VcardOutputFormatter());
+                options.InputFormatters.Add(new VcardInputFormatter());
+                options.OutputFormatters.Add(new VcardOutputFormatter());
             })
-            // .AddXmlSerializerFormatters()
+            .AddXmlSerializerFormatters()
+            .AddCsvSerializerFormatters(new CsvFormatterOptions() {
+                CsvDelimiter = ",",
+                UseSingleLineHeaderInCsv=true
+            })
             ;
 
             services.AddSwaggerGen(c =>
