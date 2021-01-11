@@ -1,0 +1,20 @@
+# Session 0205 - APIs Part 2: OpenAPI and gRPC
+
+## Agenda
+
+* Review API template
+* Discuss annotations to deliver more value using OpenAPI
+* API Clients
+* API versioning with OpenAPI
+* Introduce gRPC and gRPC template
+* gRPC client
+
+
+## Links
+
+
+
+Install the openapi tool using:
+```
+dotnet tool install --global Microsoft.dotnet-openapi --version 5.0.1
+```
