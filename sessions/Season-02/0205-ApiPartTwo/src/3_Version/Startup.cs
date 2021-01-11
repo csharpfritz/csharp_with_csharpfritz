@@ -28,9 +28,21 @@ namespace _3_Version
         {
 
             services.AddControllers();
+ 
+            services.AddApiVersioning(v => {
+                v.DefaultApiVersion = new ApiVersion(1,0);
+                v.AssumeDefaultVersionWhenUnspecified = true;
+                v.ReportApiVersions = true;
+            });
+ 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "_3_Version", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Fritz's Contacts v1", Version = "v1" });
+                c.SwaggerDoc("v2", new OpenApiInfo { Title = "Fritz's NEW Contacts v2", Version = "v2" });
+
+                c.OperationFilter<RemoveVersionFromParameter>();
+                c.DocumentFilter<ReplaceVersionWithExactValueInPath>();
+
             });
         }
 
@@ -41,7 +53,8 @@ namespace _3_Version
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "_3_Version v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fritz's Contacts v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v2/swagger.json", "Fritz's NEW Contacts v2"));
             }
 
             app.UseHttpsRedirection();
