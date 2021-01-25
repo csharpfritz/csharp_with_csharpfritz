@@ -1,4 +1,5 @@
-﻿using Grpc.Net.Client;
+﻿using _4_gRPC;
+using Grpc.Net.Client;
 using System;
 using System.Threading.Tasks;
 
@@ -16,6 +17,8 @@ namespace _4_Client
 				new HelloRequest() { Name = "Fritz" });
 
 			Console.WriteLine($"Greeting: {reply.Message}");
+
+			var results = await client.CountAsync();
 
 		}
 	}
