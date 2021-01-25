@@ -28,3 +28,6 @@ Install the http-repl using:
 ```dotnetcli
 dotnet tool install -g Microsoft.dotnet-httprepl
 ```
+
+
+`httprepl https://localhost:5001`

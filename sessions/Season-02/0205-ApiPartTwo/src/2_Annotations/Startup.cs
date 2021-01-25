@@ -44,7 +44,7 @@ namespace _2_Annotations
                     //     Url=new Uri("https://github.com/csharpfritz/csharp_with_csharpfritz/blob/main/LICENSE")
                     // },
                     Title = "Fritz's Contact API", 
-                    Version = "v1" 
+                    Version = "1.0" 
                 });
 
                 // Set the comments path for the Swagger JSON and UI.
