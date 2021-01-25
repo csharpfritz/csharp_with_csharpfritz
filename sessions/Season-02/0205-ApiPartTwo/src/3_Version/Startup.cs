@@ -14,59 +14,64 @@ using Microsoft.OpenApi.Models;
 
 namespace _3_Version
 {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+	public class Startup
+	{
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+		}
 
-        public IConfiguration Configuration { get; }
+		public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
+		{
 
-            services.AddControllers();
- 
-            services.AddApiVersioning(v => {
-                v.DefaultApiVersion = new ApiVersion(1,0);
-                v.AssumeDefaultVersionWhenUnspecified = true;
-                v.ReportApiVersions = true;
-            });
- 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Fritz's Contacts v1", Version = "v1" });
-                c.SwaggerDoc("v2", new OpenApiInfo { Title = "Fritz's NEW Contacts v2", Version = "v2" });
+			services.AddControllers();
 
-                c.OperationFilter<RemoveVersionFromParameter>();
-                c.DocumentFilter<ReplaceVersionWithExactValueInPath>();
+			services.AddApiVersioning(v =>
+			{
+				v.DefaultApiVersion = new ApiVersion(1, 0);
+				v.AssumeDefaultVersionWhenUnspecified = true;
+				v.ReportApiVersions = true;
+			});
 
-            });
-        }
+			services.AddVersionedApiExplorer(options => options.GroupNameFormat = "'v'VVV");
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fritz's Contacts v1"));
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v2/swagger.json", "Fritz's NEW Contacts v2"));
-            }
+			services.AddSwaggerGen(c =>
+						{
+							c.SwaggerDoc("v1", new OpenApiInfo { Title = "Fritz's Contacts v1", Version = "v1" });
+							c.SwaggerDoc("v2", new OpenApiInfo { Title = "Fritz's NEW Contacts v2", Version = "v2" });
 
-            app.UseHttpsRedirection();
+							c.OperationFilter<RemoveVersionFromParameter>();
+							c.DocumentFilter<ReplaceVersionWithExactValueInPath>();
 
-            app.UseRouting();
+						});
+		}
 
-            app.UseAuthorization();
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+				app.UseSwagger();
+				app.UseSwaggerUI(c => {
+					c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fritz's Contacts v1");
+					c.SwaggerEndpoint("/swagger/v2/swagger.json", "Fritz's NEW Contacts v2");
+				});
+			}
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-        }
-    }
+			app.UseHttpsRedirection();
+
+			app.UseRouting();
+
+			app.UseAuthorization();
+
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapControllers();
+			});
+		}
+	}
 }

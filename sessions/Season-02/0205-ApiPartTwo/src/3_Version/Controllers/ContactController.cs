@@ -9,7 +9,7 @@ namespace _3_Version.Controllers {
   [ApiController]
   [ApiVersion("1.0")]
   [Produces("application/json")]
-  [Route("v{version:apiVersion}/Contact")] // v{version:apiVersion}/
+  [Route("{version:apiVersion}/Contact")] // v{version:apiVersion}/
   public class ContactController : Controller {
 
     private static readonly  List<Contact> _Contacts = new List<Contact> {
@@ -31,7 +31,7 @@ namespace _3_Version.Controllers {
     /// <returns>All of the contacts known to the API</returns>
     [HttpGet]
     public ActionResult<IEnumerable<Contact>> Get() {
-      return _Contacts;
+      return Ok(_Contacts);
     }
 
     /// <summary>

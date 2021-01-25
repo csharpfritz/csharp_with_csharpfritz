@@ -33,24 +33,24 @@ namespace _2_Annotations
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { 
-                    Contact = new OpenApiContact {
-                        Name="Jeff Fritz",
-                        Email="fritz@FritzsCoolApis.com",
-                        Url=new Uri("https://www.csharpfritz.com")
-                    },
-                    Description="Fritz's contact API demo",
-                    License=new OpenApiLicense {
-                        Name="MIT License",
-                        Url=new Uri("https://github.com/csharpfritz/csharp_with_csharpfritz/blob/main/LICENSE")
-                    },
+                    // Contact = new OpenApiContact {
+                    //     Name="Jeff Fritz",
+                    //     Email="fritz@FritzsCoolApis.com",
+                    //     Url=new Uri("https://www.csharpfritz.com")
+                    // },
+                    // Description="Fritz's contact API demo",
+                    // License=new OpenApiLicense {
+                    //     Name="MIT License",
+                    //     Url=new Uri("https://github.com/csharpfritz/csharp_with_csharpfritz/blob/main/LICENSE")
+                    // },
                     Title = "Fritz's Contact API", 
                     Version = "v1" 
                 });
 
                 // Set the comments path for the Swagger JSON and UI.
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
+                // var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                // var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                // c.IncludeXmlComments(xmlPath);
 
             });
         }
@@ -63,8 +63,8 @@ namespace _2_Annotations
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => {
-                    c.DocumentTitle = "Fritz's Cool Contact APIs";
-                    c.InjectStylesheet("/fritz.css");
+                    // c.DocumentTitle = "Fritz's Cool Contact APIs";
+                    // c.InjectStylesheet("/fritz.css");
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fritz's Contact API v1");
                 });
             }

@@ -9,7 +9,7 @@ namespace _3_Version.Controllers {
   [ApiController]
   [ApiVersion("2.0")]
   [Produces("application/json")]
-  [Route("v{version:apiVersion}/Contact")] // v{version:apiVersion}/
+  [Route("{version:apiVersion}/Contact")] // v{version:apiVersion}/
   public class ContactV2Controller : Controller {
 
     private static readonly  List<Contact> _Contacts = new List<Contact> {
