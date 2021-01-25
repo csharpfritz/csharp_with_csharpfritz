@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4_gRPC", "4_gRPC\4_gRPC.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2_Client", "2_Client\2_Client.csproj", "{F24496FC-EC5C-4131-BEF4-B92D772D4864}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4_Client", "4_Client\4_Client.csproj", "{7BD7E34D-F44A-4380-9A9B-40BDEE7DE553}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{F24496FC-EC5C-4131-BEF4-B92D772D4864}.Release|x64.Build.0 = Release|Any CPU
 		{F24496FC-EC5C-4131-BEF4-B92D772D4864}.Release|x86.ActiveCfg = Release|Any CPU
 		{F24496FC-EC5C-4131-BEF4-B92D772D4864}.Release|x86.Build.0 = Release|Any CPU
+		{7BD7E34D-F44A-4380-9A9B-40BDEE7DE553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BD7E34D-F44A-4380-9A9B-40BDEE7DE553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BD7E34D-F44A-4380-9A9B-40BDEE7DE553}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7BD7E34D-F44A-4380-9A9B-40BDEE7DE553}.Debug|x64.Build.0 = Debug|Any CPU
+		{7BD7E34D-F44A-4380-9A9B-40BDEE7DE553}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7BD7E34D-F44A-4380-9A9B-40BDEE7DE553}.Debug|x86.Build.0 = Debug|Any CPU
+		{7BD7E34D-F44A-4380-9A9B-40BDEE7DE553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BD7E34D-F44A-4380-9A9B-40BDEE7DE553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BD7E34D-F44A-4380-9A9B-40BDEE7DE553}.Release|x64.ActiveCfg = Release|Any CPU
+		{7BD7E34D-F44A-4380-9A9B-40BDEE7DE553}.Release|x64.Build.0 = Release|Any CPU
+		{7BD7E34D-F44A-4380-9A9B-40BDEE7DE553}.Release|x86.ActiveCfg = Release|Any CPU
+		{7BD7E34D-F44A-4380-9A9B-40BDEE7DE553}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
