@@ -80,3 +80,9 @@ You can then navigate around your API as though you were traversing folders and 
 using var channel = GrpcChannel.ForAddress("https://localhost:5001");
 var client = new Greeter.GreeterClient(channel);
 ```
+
+### Versioning gRPC
+
+tldr; Add a version number to the package definition `greeter.v1`
+
+Microsoft docs:  https://docs.microsoft.com/aspnet/core/grpc/versioning?view=aspnetcore-5.0
