@@ -40,14 +40,14 @@ namespace _2_Annotations.Controllers {
     /// <returns></returns>
     /// <response code="200">Returns the contact sought</response>
     /// <response code="404">Unable to find a contact with the id requested</response>
-   [HttpGet("{id}")]
+   [HttpGet("{id}", Name ="GetById")]
    [ProducesResponseType(StatusCodes.Status200OK)]
    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<Contact> GetById(int id) {
       
       if (!_Contacts.Any(c => c.Id == id)) return NotFound();
       
-      return _Contacts.FirstOrDefault(c => c.Id == id);
+      return new OkObjectResult(_Contacts.FirstOrDefault(c => c.Id == id));
 
     }
 
@@ -81,10 +81,9 @@ namespace _2_Annotations.Controllers {
       newContact.Id = _Contacts.Max(c => c.Id) + 1;
       
       _Contacts.Add(newContact);
-      return new CreatedAtActionResult("GetById", "ContactController", new {id=newContact.Id}, newContact);
+      return new CreatedAtRouteResult("GetById", new {id=newContact.Id}, newContact);
 
     }
-
 
   }
 

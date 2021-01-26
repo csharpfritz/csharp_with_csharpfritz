@@ -12,10 +12,24 @@ service Greeter {
   // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply);
 
+  rpc GetContactById(ContactById) returns (ContactResponse);
+
   // Count
   rpc CountStream (google.protobuf.Empty) returns (stream CountData);
 
 }
+
+
+message ContactById {
+  int32 Id = 1;
+}
+
+message ContactResponse {
+  int32 Id = 1;
+  string FirstName = 2;
+  string LastName = 3;
+}
+
 
 // The request message containing the user's name.
 message HelloRequest {

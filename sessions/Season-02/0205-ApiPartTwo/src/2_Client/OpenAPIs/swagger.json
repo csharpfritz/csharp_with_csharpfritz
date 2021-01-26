@@ -1,8 +1,18 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Fritz's Contact API",
-    "version": "v1"
+    "title": "C# with CSharpFritz Contact API",
+    "description": "Fritz's contact API demo",
+    "contact": {
+      "name": "Jeff Fritz",
+      "url": "https://www.csharpfritz.com",
+      "email": "fritz@FritzsCoolApis.com"
+    },
+    "license": {
+      "name": "MIT License",
+      "url": "https://github.com/csharpfritz/csharp_with_csharpfritz/blob/main/LICENSE"
+    },
+    "version": "1.0"
   },
   "paths": {
     "/Contact": {
@@ -10,6 +20,7 @@
         "tags": [
           "Contact"
         ],
+        "summary": "Get all of the contacts in the system",
         "responses": {
           "200": {
             "description": "Success",
@@ -30,7 +41,10 @@
         "tags": [
           "Contact"
         ],
+        "summary": "Add a new contact",
+        "description": "When creating a new contact, the Id value is not required.\r\n\r\nSample request:\r\n            \r\n    POST /Contact\r\n    {\r\n       \"FirstName\": \"First Name\",\r\n       \"LastName\": \"Last Name\"\r\n    }",
         "requestBody": {
+          "description": "The new contact to create",
           "content": {
             "application/json": {
               "schema": {
@@ -51,7 +65,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success",
+            "description": "Created the new contact successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -61,7 +75,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Error creating the contact",
             "content": {
               "application/json": {
                 "schema": {
@@ -78,20 +92,24 @@
         "tags": [
           "Contact"
         ],
+        "summary": "Get the contact identified by id",
+        "operationId": "GetById",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the contact sought",
             "required": true,
             "schema": {
               "type": "integer",
+              "description": "The unique identifier for the contact sought",
               "format": "int32"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Returns the contact sought",
             "content": {
               "application/json": {
                 "schema": {
@@ -101,7 +119,7 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "Unable to find a contact with the id requested",
             "content": {
               "application/json": {
                 "schema": {
@@ -124,16 +142,19 @@
         "properties": {
           "id": {
             "type": "integer",
+            "description": "A unique identifier for the contact",
             "format": "int32"
           },
           "firstName": {
             "maxLength": 50,
             "type": "string",
+            "description": "The contact's given name",
             "nullable": true
           },
           "lastName": {
             "maxLength": 50,
-            "type": "string"
+            "type": "string",
+            "description": "The contact's family name or surname"
           }
         },
         "additionalProperties": false

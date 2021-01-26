@@ -10,6 +10,20 @@ namespace _4_gRPC
 {
   public class GreeterService : Greeter.GreeterBase
   {
+
+    private static readonly List<ContactResponse> _Contacts = new List<ContactResponse> {
+      new ContactResponse {
+        Id=1,
+        FirstName="Jeff",
+        LastName="Fritz"
+      },
+      new ContactResponse {
+        Id=2,
+        FirstName="Mary",
+        LastName="Contrary"
+      }
+    };
+
     private readonly ILogger<GreeterService> _logger;
     public GreeterService(ILogger<GreeterService> logger)
     {
@@ -24,7 +38,14 @@ namespace _4_gRPC
       });
     }
 
-    public override async Task CountStream(Empty request, IServerStreamWriter<CountData> responseStream, ServerCallContext context)
+		public override Task<ContactResponse> GetContactById(ContactById request, ServerCallContext context)
+		{
+      return Task.FromResult(_Contacts.FirstOrDefault(c => c.Id == request.Id));
+		}
+
+
+
+		public override async Task CountStream(Empty request, IServerStreamWriter<CountData> responseStream, ServerCallContext context)
     {
 
         for (var i=0; i<10; i++) {

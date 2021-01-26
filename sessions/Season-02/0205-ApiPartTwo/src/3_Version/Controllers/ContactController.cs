@@ -7,9 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace _3_Version.Controllers {
 
   [ApiController]
-  [ApiVersion("1.0")]
   [Produces("application/json")]
-  [Route("{version:apiVersion}/Contact")] // v{version:apiVersion}/
+  [Route("{version:apiVersion}/Contact")] 
   public class ContactController : Controller {
 
     private static readonly  List<Contact> _Contacts = new List<Contact> {
