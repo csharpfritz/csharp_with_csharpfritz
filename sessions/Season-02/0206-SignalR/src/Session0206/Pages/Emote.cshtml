@@ -1,0 +1,43 @@
+@page
+
+<h1>Interactive Emotes Demo</h1>
+
+<h3>Click a button to send that emote to Fritz's screen LIVE!</h3>
+<button data-id="1"><img src="/img/1.png" /></button>
+<button data-id="2"><img src="/img/2.png" /></button>
+<button data-id="3"><img src="/img/3.png" /></button>
+<br/>
+<button data-id="4"><img src="/img/4.png" /></button>
+<button data-id="5"><img src="/img/5.png" /></button>
+<button data-id="6"><img src="/img/6.png" /></button>
+<br/>
+<button data-id="7"><img src="/img/7.png" /></button>
+<button data-id="8"><img src="/img/8.png" /></button>
+<button data-id="9"><img src="/img/9.png" /></button>
+
+@section Scripts {
+
+<script type="text/javascript">
+
+	(function () {
+
+		const connection = new signalR.HubConnectionBuilder()
+			.withUrl("/hub/emote")
+			.configureLogging(signalR.LogLevel.Information)
+			.build();
+
+		const theButtons = document.querySelectorAll("button");
+		theButtons.forEach((b) => {
+			b.onclick = function() {
+				connection.invoke("SendEmote", parseInt(b.getAttribute("data-id")));
+			}
+		});
+
+		 connection.start();
+
+	})();
+
+
+</script>
+
+}

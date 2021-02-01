@@ -1,0 +1,68 @@
+@page
+
+<style>
+* {
+user-select:none;
+}
+
+#theShape {
+	height: 100px;
+	width: 100px;
+	background-color: blue;
+	position: absolute;
+	z-index: 3;
+	opacity: 0.7;
+}
+</style>
+
+<h1>Move Shape Demo</h1>
+
+<div id="theShape" draggable="false"></div>
+
+
+@section Scripts {
+
+<script type="text/javascript">
+
+	(function () {
+
+		const connection = new signalR.HubConnectionBuilder()
+			.withUrl("/hub/shape")
+			.configureLogging(signalR.LogLevel.Information)
+			.build();
+
+		const theShape = document.getElementById("theShape");
+		var drag = false;
+
+		connection.on("ClientMoveShape", (x, y) => {
+			theShape.style.left = `${x}px`;
+			theShape.style.top = `${y}px`;
+		});
+
+		theShape.addEventListener("mousedown", e => {
+			drag = true;
+			console.log("Started drag");
+		});
+
+		window.addEventListener("mouseup", e => {
+			if (!drag) return;
+			drag = false;
+			console.log("Ending drag");
+		});
+
+		window.addEventListener("mousemove", e => {
+			if (!drag) return;
+			console.log(`moving ${e.clientX}, ${e.clientY}`);
+			theShape.style.left = `${e.clientX}px`;
+			theShape.style.top = `${e.clientY}px`;
+			connection.invoke("ServerMoveShape", e.clientX, e.clientY);
+		});
+
+		 connection.start();
+
+	})();
+
+
+</script>
+
+}
