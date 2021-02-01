@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 
@@ -14,6 +15,21 @@ namespace Session0206.Hubs
 
 		}
 
+		private static int _Count;
+
+    public override async Task OnConnectedAsync()
+    {
+			_Count++;
+			await Clients.All.SendAsync("Count", _Count);
+    }
+
+    public override async Task OnDisconnectedAsync(Exception exception)
+    {
+			_Count--;
+			await Clients.All.SendAsync("Count", _Count);
+    }
+
+  
 
 	}
 

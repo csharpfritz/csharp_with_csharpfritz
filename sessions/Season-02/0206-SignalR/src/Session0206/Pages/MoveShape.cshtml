@@ -16,6 +16,8 @@ user-select:none;
 </style>
 
 <h1>Move Shape Demo</h1>
+<h2>Connections (<span id="count"></span>)</h2>
+<h2>As of: <span id="timer"></span></h2>
 
 <div id="theShape" draggable="false"></div>
 
@@ -32,6 +34,8 @@ user-select:none;
 			.build();
 
 		const theShape = document.getElementById("theShape");
+		const count = document.getElementById("count");
+		const timer = document.getElementById("timer");
 		var drag = false;
 
 		connection.on("ClientMoveShape", (x, y) => {
@@ -57,6 +61,14 @@ user-select:none;
 			theShape.style.top = `${e.clientY}px`;
 			connection.invoke("ServerMoveShape", e.clientX, e.clientY);
 		});
+
+		connection.on("count", c => {
+			count.textContent = c;
+		})
+
+		connection.on("timer", t => {
+			timer.textContent = t;
+		})
 
 		 connection.start();
 

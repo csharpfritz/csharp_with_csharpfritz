@@ -28,6 +28,8 @@ namespace Session0206
 
 			services.AddSignalR();
 
+			services.AddHostedService<TimerService>();
+
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
