@@ -15,6 +15,15 @@
 <button data-id="8"><img src="/img/8.png" /></button>
 <button data-id="9"><img src="/img/9.png" /></button>
 
+<h2>Some stats</h2>
+<dl>
+	<dt>Connections:</dt>
+	<dd id="count"></dd>
+	<dt>Emote Clicks:</dt>
+	<dd id="clicks"></dd>
+</dl>
+
+
 @section Scripts {
 
 <script type="text/javascript">
@@ -26,12 +35,25 @@
 			.configureLogging(signalR.LogLevel.Information)
 			.build();
 
+		const count = document.getElementById("count");
+		const clicks = document.getElementById("clicks");
+
 		const theButtons = document.querySelectorAll("button");
 		theButtons.forEach((b) => {
 			b.onclick = function() {
 				connection.invoke("SendEmote", parseInt(b.getAttribute("data-id")));
 			}
 		});
+
+		connection.on("count", c => {
+			count.textContent = c;
+		})
+
+		connection.on("clicks", c => {
+			clicks.textContent = c;
+		})
+
+
 
 		 connection.start();
 

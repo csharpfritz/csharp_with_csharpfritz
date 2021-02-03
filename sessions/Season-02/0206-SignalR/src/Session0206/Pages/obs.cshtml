@@ -46,6 +46,7 @@ body {
 
 		const connection = new signalR.HubConnectionBuilder()
 			.withUrl("/hub/emote?group=obs")
+			.withAutomaticReconnect()
 			.configureLogging(signalR.LogLevel.Information)
 			.build();
 

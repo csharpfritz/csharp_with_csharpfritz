@@ -13,11 +13,24 @@ user-select:none;
 	z-index: 3;
 	opacity: 0.7;
 }
+
+	#error {
+		border: 1px solid red;
+		padding: 10px;
+		margin: 10px;
+		color: red;
+		font-weight: bold;
+		display: none;
+	}
+
 </style>
 
 <h1>Move Shape Demo</h1>
 <h2>Connections (<span id="count"></span>)</h2>
 <h2>As of: <span id="timer"></span></h2>
+
+
+<div id="error"></div>
 
 <div id="theShape" draggable="false"></div>
 
@@ -30,6 +43,7 @@ user-select:none;
 
 		const connection = new signalR.HubConnectionBuilder()
 			.withUrl("/hub/shape")
+			.withAutomaticReconnect([0, 1000, 1500, 2000, 2500, 3000])
 			.configureLogging(signalR.LogLevel.Information)
 			.build();
 
@@ -61,6 +75,24 @@ user-select:none;
 			theShape.style.top = `${e.clientY}px`;
 			connection.invoke("ServerMoveShape", e.clientX, e.clientY);
 		});
+
+
+		connection.onreconnecting(e => {
+			console.log("Reconnecting...");
+			document.getElementById("error").innerText = "Connection lost... Attempting to reconnect";
+			document.getElementById("error").style.display = "block"; 
+		});
+
+		connection.onreconnected(e => {
+			document.getElementById("error").innerText = "";
+			document.getElementById("error").style.display = "none";
+		});
+
+		connection.onclose(e => {
+			document.getElementById("error").innerText = "Connection lost... Refresh to attempt reconnection";
+			document.getElementById("error").style.display = "block";
+		});
+
 
 		connection.on("count", c => {
 			count.textContent = c;
