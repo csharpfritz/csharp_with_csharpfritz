@@ -2,10 +2,6 @@
 
 The basic interactions between machines are facilitated by the API features of ASP.NET Core.  In this session, we'll cover the capabilities provided and how you can start to configure them to make your applications interact with data and servers easier.
 
-## The New API template
-
-In the collection of ASP.NET Core project templates
-
 ## Agenda
 
 - New API project template

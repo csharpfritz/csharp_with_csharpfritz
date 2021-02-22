@@ -1,0 +1,16 @@
+<h2>A simple search form</h2>
+
+@using (Html.BeginForm("BasicForm", "Form")) { 
+
+    <div class="form-group">
+
+    <input type="text" name="Search" class="form-control" placeholder="Search..." />
+    <input type="submit" class="btn-primary" value="Go!" />
+
+    </div>
+
+}
+
+@if (TempData.ContainsKey("SearchTerm")) {
+    <p>Search results for query: <b>@TempData["SearchTerm"]</b></p>
+}

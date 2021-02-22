@@ -1,0 +1,65 @@
+@page
+
+<h1>Interactive Emotes Demo</h1>
+
+<h3>Click a button to send that emote to Fritz's screen LIVE!</h3>
+<button data-id="1"><img src="/img/1.png" /></button>
+<button data-id="2"><img src="/img/2.png" /></button>
+<button data-id="3"><img src="/img/3.png" /></button>
+<br/>
+<button data-id="4"><img src="/img/4.png" /></button>
+<button data-id="5"><img src="/img/5.png" /></button>
+<button data-id="6"><img src="/img/6.png" /></button>
+<br/>
+<button data-id="7"><img src="/img/7.png" /></button>
+<button data-id="8"><img src="/img/8.png" /></button>
+<button data-id="9"><img src="/img/9.png" /></button>
+
+<h2>Some stats</h2>
+<dl>
+	<dt>Connections:</dt>
+	<dd id="count"></dd>
+	<dt>Emote Clicks:</dt>
+	<dd id="clicks"></dd>
+</dl>
+
+
+@section Scripts {
+
+<script type="text/javascript">
+
+	(function () {
+
+		const connection = new signalR.HubConnectionBuilder()
+			.withUrl("/hub/emote")
+			.configureLogging(signalR.LogLevel.Information)
+			.build();
+
+		const count = document.getElementById("count");
+		const clicks = document.getElementById("clicks");
+
+		const theButtons = document.querySelectorAll("button");
+		theButtons.forEach((b) => {
+			b.onclick = function() {
+				connection.invoke("SendEmote", parseInt(b.getAttribute("data-id")));
+			}
+		});
+
+		connection.on("count", c => {
+			count.textContent = c;
+		})
+
+		connection.on("clicks", c => {
+			clicks.textContent = c;
+		})
+
+
+
+		 connection.start();
+
+	})();
+
+
+</script>
+
+}

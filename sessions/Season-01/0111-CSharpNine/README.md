@@ -17,7 +17,7 @@ Records are a new reference type that synthesizes methods to provide semantics f
 The compiler will generate the following methods for you in a record type:
 
 - Methods for value-based equality comparisons
-- GetHasCode()
+- GetHashCode()
 - Copy and Clone members
 - `PrintMembers` and `ToString()`
 

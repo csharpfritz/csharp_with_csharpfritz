@@ -1,0 +1,15 @@
+.topbar {
+  background-color: navy!important;
+}
+
+.topbar-wrapper a.link * {
+  display: none;
+} 
+
+.topbar-wrapper a.link {
+  background-image: url('/csharp.png');
+  background-size: 60px;
+  background-repeat: no-repeat;
+  height: 40px;
+  width: 30px;
+}
