@@ -1,0 +1,80 @@
+@page
+@{
+	Layout = null;
+}
+
+<style>
+	.float {
+    position: absolute;
+    -webkit-animation: floatBubble 4s forwards  normal ease-out;
+    animation: floatBubble 4s forwards  normal ease-out;
+}
+@@-webkit-keyframes floatBubble {
+    0% {
+        bottom:-30px;
+				opacity: 1;
+    }
+    100% {
+        bottom: 500px;
+				opacity: 0;
+				display: none;
+    }
+}
+@@keyframes floatBubble {
+    0% {
+        bottom:-30px;
+				opacity: 1;
+    }
+    100% {
+        bottom: 500px;
+				opacity: 0;
+				display: none;
+    }
+}
+
+body {
+	overflow: hidden;
+}
+</style>
+
+
+
+<script src="~/lib/signalr/signalr.min.js"></script>
+<script type="text/javascript">
+
+	(function () {
+
+		const connection = new signalR.HubConnectionBuilder()
+			.withUrl("/hub/emote?group=obs")
+			.withAutomaticReconnect()
+			.configureLogging(signalR.LogLevel.Information)
+			.build();
+
+			connection.on("FlyEmote", function(buttonId) {
+
+				var newImg = document.createElement("img");
+				newImg.src = `/img/${buttonId}.png`;
+				newImg.className = "float";
+				newImg.style.bottom = "-30px";
+				newImg.style.left = `${Math.random()*100}%`;
+				document.body.appendChild(newImg);
+
+			});
+
+		 connection.start();
+
+		window.setInterval(function() {
+
+			var top = document.body.clientHeight - 500 - 100;
+
+			var hiddenEls = document.querySelectorAll("img");
+			hiddenEls.forEach(h => {
+				if (top > h.offsetTop) document.body.removeChild(h);
+			});
+
+		}, 2000);
+
+	})();
+
+
+</script>

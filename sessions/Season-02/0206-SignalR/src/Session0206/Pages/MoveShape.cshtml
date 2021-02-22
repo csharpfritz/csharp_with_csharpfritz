@@ -1,0 +1,112 @@
+@page
+
+<style>
+* {
+user-select:none;
+}
+
+#theShape {
+	height: 100px;
+	width: 100px;
+	background-color: blue;
+	position: absolute;
+	z-index: 3;
+	opacity: 0.7;
+}
+
+	#error {
+		border: 1px solid red;
+		padding: 10px;
+		margin: 10px;
+		color: red;
+		font-weight: bold;
+		display: none;
+	}
+
+</style>
+
+<h1>Move Shape Demo</h1>
+<h2>Connections (<span id="count"></span>)</h2>
+<h2>As of: <span id="timer"></span></h2>
+
+
+<div id="error"></div>
+
+<div id="theShape" draggable="false"></div>
+
+
+@section Scripts {
+
+<script type="text/javascript">
+
+	(function () {
+
+		const connection = new signalR.HubConnectionBuilder()
+			.withUrl("/hub/shape")
+			.withAutomaticReconnect([0, 1000, 1500, 2000, 2500, 3000])
+			.configureLogging(signalR.LogLevel.Information)
+			.build();
+
+		const theShape = document.getElementById("theShape");
+		const count = document.getElementById("count");
+		const timer = document.getElementById("timer");
+		var drag = false;
+
+		connection.on("ClientMoveShape", (x, y) => {
+			theShape.style.left = `${x}px`;
+			theShape.style.top = `${y}px`;
+		});
+
+		theShape.addEventListener("mousedown", e => {
+			drag = true;
+			console.log("Started drag");
+		});
+
+		window.addEventListener("mouseup", e => {
+			if (!drag) return;
+			drag = false;
+			console.log("Ending drag");
+		});
+
+		window.addEventListener("mousemove", e => {
+			if (!drag) return;
+			console.log(`moving ${e.clientX}, ${e.clientY}`);
+			theShape.style.left = `${e.clientX}px`;
+			theShape.style.top = `${e.clientY}px`;
+			connection.invoke("ServerMoveShape", e.clientX, e.clientY);
+		});
+
+
+		connection.onreconnecting(e => {
+			console.log("Reconnecting...");
+			document.getElementById("error").innerText = "Connection lost... Attempting to reconnect";
+			document.getElementById("error").style.display = "block"; 
+		});
+
+		connection.onreconnected(e => {
+			document.getElementById("error").innerText = "";
+			document.getElementById("error").style.display = "none";
+		});
+
+		connection.onclose(e => {
+			document.getElementById("error").innerText = "Connection lost... Refresh to attempt reconnection";
+			document.getElementById("error").style.display = "block";
+		});
+
+
+		connection.on("count", c => {
+			count.textContent = c;
+		})
+
+		connection.on("timer", t => {
+			timer.textContent = t;
+		})
+
+		 connection.start();
+
+	})();
+
+
+</script>
+
+}
