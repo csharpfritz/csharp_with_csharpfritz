@@ -1,4 +1,6 @@
-# Session 0204 - Introducing APIs
+# Season 2 - Episode 4: Introducing APIs
+
+The basic interactions between machines are facilitated by the API features of ASP.NET Core.  In this session, we'll cover the capabilities provided and how you can start to configure them to make your applications interact with data and servers easier.
 
 ## Agenda
 
@@ -17,4 +19,4 @@
 
 ## Next Time
 - OpenAPI with Swashbuckle
-- gRPC
+- gRPC 
