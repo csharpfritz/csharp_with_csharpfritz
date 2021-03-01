@@ -9,8 +9,17 @@
 @code {
     private int currentCount = 0;
 
+		[Parameter] public int Step { get; set; } = 1;
+
     private void IncrementCount()
     {
-        currentCount++;
+        currentCount+=Step;
     }
+
+    protected override async Task OnParametersSetAsync() {
+
+     Console.WriteLine($"Step = {Step}");
+
+    }
+
 }

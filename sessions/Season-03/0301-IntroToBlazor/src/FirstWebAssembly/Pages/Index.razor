@@ -4,4 +4,13 @@
 
 Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<Counter Step="@Step" />
+
+Counter interval:
+<input type="number" @bind="@Step" />
+
+@code {
+
+    private int Step = 2;
+
+}
