@@ -14,4 +14,4 @@
     <ProjectReference Include="..\Fritz.Components\Fritz.Components.csproj" />
   </ItemGroup>
 
-</Project>
+ </Project>

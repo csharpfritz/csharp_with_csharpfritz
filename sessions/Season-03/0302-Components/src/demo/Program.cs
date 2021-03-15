@@ -19,6 +19,8 @@ namespace demo
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
+            builder.Services.AddScoped<Data.HatRepository>();
+
             await builder.Build().RunAsync();
         }
     }
