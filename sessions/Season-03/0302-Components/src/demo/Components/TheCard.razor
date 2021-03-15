@@ -1,0 +1,15 @@
+<div class="card">
+
+    <CardHeader>@HeaderText</CardHeader>
+
+    <CardBody>@ChildContent</CardBody>
+
+</div>
+
+@code {
+
+    [Parameter] public string HeaderText { get; set; }
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+}

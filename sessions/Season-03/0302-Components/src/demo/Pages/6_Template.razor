@@ -1,0 +1,30 @@
+@page "/6_template"
+
+<h1>Templates and RenderFragments</h1>
+
+<p>
+    You can use templates inside of your components to allow the caller to dictate 
+    how the content will be rendered.  Use the Context attribute to interact with the object
+    in the template.
+</p>
+
+<h4>Code Sample:</h4>
+<pre>
+&lt;HatTemplate TItem="Hat" Items="Hat.Collection"&gt;
+    &lt;HatContent Context="h"&gt;
+        &lt;TheCard HeaderText="@@h.Name"&gt;
+            Acquired in @@h.Year
+        &lt;/TheCard&gt;
+    &lt;/HatContent&gt;
+&lt;/HatTemplate&gt;
+</pre>
+
+<HatTemplate TItem="Hat" Items="Hat.Collection">
+    <HatContent Context="h">
+        <TheCard HeaderText="@h.Name">
+            Acquired in @h.Year
+        </TheCard>
+    </HatContent>
+</HatTemplate>
+
+

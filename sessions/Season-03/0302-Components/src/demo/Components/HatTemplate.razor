@@ -1,0 +1,16 @@
+@typeparam TItem
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+
+    @foreach (var hat in Items) {
+        @HatContent(hat)
+    }
+
+</div>
+
+@code {
+
+    [Parameter] public RenderFragment<TItem> HatContent { get; set; }
+
+    [Parameter] public ICollection<TItem> Items { get; set; }
+
+}

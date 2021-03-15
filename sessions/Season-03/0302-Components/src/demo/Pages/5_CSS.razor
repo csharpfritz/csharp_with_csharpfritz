@@ -1,0 +1,37 @@
+@page "/5_css"
+
+<h1>Components can have CSS</h1>
+
+<p>
+    A key feature of components is to not only carry their layout, but also their formatting.  CSS Isolation
+    allows you to create a CSS file with the same base name as the component and scope the contents of the rules
+    to JUST that component.
+</p>
+
+<p>To activate this feature, add a CSS stylesheet into the HTML head with PROJECTNAME.styles.css</p>
+
+<h4>Code Sample:</h4>
+<pre>
+index.html
+
+    ...
+    &lt;link href="demo.styles.css" rel="stylesheet" /&gt;
+&lt;/head&gt;
+</pre>
+
+<pre>
+CardHeader.razor.css
+
+.card-header {
+    background-color: skyblue;
+}
+</pre>
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+@foreach (var h in Hat.Collection)
+{
+    <TheCard HeaderText="@h.Name">
+        Acquired in @h.Year
+    </TheCard>
+}
+</div>
