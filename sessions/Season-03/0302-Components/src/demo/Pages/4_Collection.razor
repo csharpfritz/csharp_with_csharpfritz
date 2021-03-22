@@ -1,0 +1,26 @@
+@page "/4_collection"
+
+<h1>Collection and Components</h1>
+
+<p>
+    Working with a collection becomes a snap and makes for much more expressive code
+</p>
+
+<h4>Code Sample:</h4>
+<pre>
+@@foreach (var h in Hat.Collection)
+{
+    &lt;TheCard HeaderText="@@h.Name"&gt;
+        Acquired in @@h.Year
+    &lt;/TheCard&gt;
+}
+</pre>
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+@foreach (var h in Hat.Collection)
+{
+    <TheCard HeaderText="@h.Name">
+        Acquired in <b>@h.Year</b>
+    </TheCard>
+}
+</div>

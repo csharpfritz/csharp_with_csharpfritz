@@ -1,0 +1,27 @@
+@typeparam TItem
+
+@if (IsFlex) {
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+
+    @foreach (var item in Items) {
+        @HatContent(item)
+    }
+
+</div>
+
+} else {
+
+    @foreach (var item in Items) {
+        @HatContent(item)
+    }
+
+}
+
+@code {
+
+    [Parameter] public RenderFragment<TItem> HatContent { get; set; }
+
+    [Parameter] public ICollection<TItem> Items { get; set; }
+
+    [Parameter] public bool IsFlex { get; set; } = true;
+}

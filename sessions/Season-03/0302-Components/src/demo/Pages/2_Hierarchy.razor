@@ -1,0 +1,24 @@
+@page "/2_hierarchy"
+
+<h1>Hierarchy and Child Content</h1>
+
+<p>
+    The ChildContent parameter can be used to capture the components inner elements 
+    and place them appropriately in the output
+</p>
+
+<p><b>Problem:</b>This allows TOO much flexibility as we can place as many or any element inside our child content</p>
+
+<h4>Code Sample:</h4>
+<pre>
+&lt;Card&gt;
+    &lt;CardHeader&gt;Blazor Hat&lt;/CardHeader&gt;
+    &lt;CardBody&gt;This is one of Fritz's hats&lt;/CardBody&gt;
+&lt;/Card&gt;
+</pre> 
+
+<Card>
+    <CardHeader>Blazor Hat</CardHeader>
+    <CardBody>This is one of Fritz's hats</CardBody>
+    <p><b>Hello World</b> - Fritz was here</p>
+</Card>
