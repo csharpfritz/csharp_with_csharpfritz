@@ -1,0 +1,18 @@
+@page "/4_Cascading"
+
+<h1>Cascading Parameters</h1>
+
+<p>Cascading Parameters allow you to pass data through to child components
+</p>
+
+<pre>
+&lt;TheCard HeaderText="Blazor Hat"&gt;
+    &lt;b&gt;Acquired:&lt;/b&gt; May 2020
+&lt;/TheCard&gt;    
+</pre>
+
+<CascadingValue Name="BodyFontColor" Value="@("red")">
+<TheCard HeaderText="Blazor Hat">
+    <b>Acquired:</b> May 2020
+</TheCard>
+</CascadingValue>

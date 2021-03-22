@@ -1,0 +1,8 @@
+<div class="card-body" style="color: @BodyFontColor">@ChildContent</div>
+
+@code {
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    
+    [CascadingParameter(Name="bodyfontcolor")] public string BodyFontColor { get; set;} = "inherit";
+
+}
