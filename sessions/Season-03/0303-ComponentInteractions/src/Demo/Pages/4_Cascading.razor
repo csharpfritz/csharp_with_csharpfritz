@@ -6,13 +6,17 @@
 </p>
 
 <pre>
-&lt;TheCard HeaderText="Blazor Hat"&gt;
-    &lt;b&gt;Acquired:&lt;/b&gt; May 2020
-&lt;/TheCard&gt;    
+&lt;CascadingValue Name="BodyFontColor" Value="@("red")"&gt;
+    &lt;TheCard HeaderText="Blazor Hat"&gt;
+        &lt;b&gt;Acquired:&lt;/b&gt; May 2020
+    &lt;/TheCard&gt;
+&lt;/CascadingValue&gt;
 </pre>
 
-<CascadingValue Name="BodyFontColor" Value="@("red")">
-<TheCard HeaderText="Blazor Hat">
-    <b>Acquired:</b> May 2020
-</TheCard>
+<CascadingValue Name="BodyBgColor" Value="@("lightBlue")">
+    <CascadingValue Name="BodyFontColor" Value="@("purple")">
+        <TheCard HeaderText="Blazor Hat">
+            <b>Acquired:</b> May 2020
+        </TheCard>
+    </CascadingValue>
 </CascadingValue>

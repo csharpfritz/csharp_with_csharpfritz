@@ -17,7 +17,7 @@ namespace Demo
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddScoped<State>();
+            builder.Services.AddSingleton<State>();
 
             await builder.Build().RunAsync();
         }

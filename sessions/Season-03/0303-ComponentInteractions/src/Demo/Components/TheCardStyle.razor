@@ -1,4 +1,7 @@
-<div class="card" @attributes="@Values">
+@using System.Collections.Generic
+
+<div class="card" @attributes="Values">
+@* <div class="card" style="@(Values != null && Values.ContainsKey("style") ? Values["style"] : "")"> *@
 
     <CardHeader>@HeaderText</CardHeader>
 

@@ -23,8 +23,9 @@
 
     public int Counter = 0;
     public string Text = string.Empty;
-    void ButtonClicked() {
+    void ButtonClicked(MouseEventArgs args) {
         Counter++;
+        Console.WriteLine($"Shift button pressed: {args.ShiftKey}");
     }
 
     void TextChanged(ChangeEventArgs args) {
