@@ -1,0 +1,18 @@
+﻿@inject ExampleJsInterop sample
+
+<div class="my-component">
+    This Blazor component is defined in the <strong>DemoLib</strong> package.
+
+    <button @onclick="click">Click me</button>
+
+</div>
+
+@code {
+
+    async Task click() {
+
+        await sample.Prompt("What is your favorite color?");
+
+    }
+
+}

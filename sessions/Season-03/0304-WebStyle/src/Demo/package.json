@@ -1,0 +1,17 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run sass && npm run dotnet:publish",
+    "dotnet:publish": "dotnet publish -c Release -o /bin/staticsites/ss-oryx/app",
+    "sass": "npx sass ./Themes/app.scss ./wwwroot/css/app.css --style compressed",
+    "sass:watch": "npx sass --watch ./Themes/app.scss ./wwwroot/css/app.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.32.8"
+  }
+}
