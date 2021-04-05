@@ -1,0 +1,36 @@
+@page "/2_Event"
+
+<h1>Event Handlers and Callback</h1>
+
+<TheCard HeaderText="Blazor Hat">
+    <button @onclick="ButtonClicked">Click Me</button>
+</TheCard>
+
+<span>The Counter: @Counter</span>
+
+<TheCard HeaderText="With Event Callback">
+    <CardButton OnClick="ButtonClicked"></CardButton>
+</TheCard>
+
+<p>
+    Use events with input elements to bind to things like OnChange
+</p>
+
+<input type="text" @onchange="TextChanged"/>
+<span>@Text</span>
+
+@code {
+
+    public int Counter = 0;
+    public string Text = string.Empty;
+    void ButtonClicked(MouseEventArgs args) {
+        Counter++;
+        Console.WriteLine($"Shift button pressed: {args.ShiftKey}");
+    }
+
+    void TextChanged(ChangeEventArgs args) {
+        Text = args.Value.ToString();
+    }
+
+}
+

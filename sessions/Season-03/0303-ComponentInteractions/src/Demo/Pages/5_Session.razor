@@ -1,0 +1,20 @@
+@page "/5_State"
+@inject State currentValue
+
+<h1>Managing State Between Pages</h1>
+
+This is a counter: <span>@currentValue.CurrentCount</span>
+
+<button @onclick="Increment">Increment the counter</button>
+
+@code {
+
+    @* State currentValue = new State(); *@
+
+    void Increment() {
+
+        currentValue.CurrentCount += 1;
+
+    }
+
+}
