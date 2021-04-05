@@ -4,3 +4,12 @@
 export function showPrompt(message) {
   return prompt(message, 'Type anything here');
 }
+
+export function helloWorld() {
+
+	DotNet.invokeMethodAsync('DemoLib', 'Hello')
+		.then(data => {
+			alert("Hello " + data);
+		});
+
+}
