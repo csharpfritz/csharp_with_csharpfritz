@@ -18,7 +18,7 @@ Check the `/Pages/Test/Page.razor` file in the demo.
 
 All .razor files can be referenced as components in other templates.  Use the `/Components` folder to place those template files that do not include a `@page` directive and cannot be navigated to.
 
-Add the `Components` folder's namspace to your `_Imports.razor` file to allow these components to be referenced elsewhere in your application:
+Add the `Components` folder's namespace to your `_Imports.razor` file to allow these components to be referenced elsewhere in your application:
 
 ```
 @using demo.Components
