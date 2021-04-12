@@ -1,7 +1,7 @@
 ﻿@page "/fetchdata"
 @inject HttpClient http
 
-<h1>Weather forecast</h1>
+<h1>Weather forecast for @City</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
 
@@ -37,10 +37,30 @@ else
 @code {
 	private ICollection<WeatherForecast> forecasts;
 
-	protected override async Task OnInitializedAsync()
-	{
+	[Parameter]
+	public string City { get; set; } = "Springfield";
+
+	private int _Counter = 0;
+
+	protected override async Task OnParametersSetAsync() {
+
+		Console.WriteLine($"Parameters set! {_Counter++}");
+
 		var client = new WeatherForecastClient("/", http);
 		forecasts = await client.WeatherForecastAsync();
+
+	}
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+
+		//if (firstRender)
+		//{
+		//	var client = new WeatherForecastClient("/", http);
+		//	forecasts = await client.WeatherForecastAsync();
+		//	StateHasChanged();
+		//}
+
 	}
 
 }

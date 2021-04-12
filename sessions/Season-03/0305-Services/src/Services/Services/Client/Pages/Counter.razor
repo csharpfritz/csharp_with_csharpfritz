@@ -4,13 +4,26 @@
 
 <p>Current count: @currentCount</p>
 
+<input type="number" @bind="Increment" />
+
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="@(() => Increment = 5)">Reset Increment to 5</button>
+
+<p>
+<input type="checkbox" @bind="IsChecked" />
+The checkbox is checked: @IsChecked.ToString()
+</p>
 
 @code {
-    private int currentCount = 0;
 
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
+	private int currentCount = 0;
+
+	public int Increment = 1;
+
+	public bool IsChecked = false;
+
+	private void IncrementCount()
+	{
+		currentCount += Increment;
+	}
 }
