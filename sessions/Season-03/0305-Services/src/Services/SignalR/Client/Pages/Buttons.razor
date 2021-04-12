@@ -1,0 +1,52 @@
+﻿@page "/buttons"
+
+@using Microsoft.AspNetCore.SignalR.Client
+@inject NavigationManager NavigationManager
+@inject IJSRuntime jsRuntime
+@implements IAsyncDisposable
+
+<h3>Click a button to send that emote to Fritz's screen LIVE!</h3>
+<button @onclick="() => ButtonClick(1)"><img src="/img/1.png" /></button>
+<button @onclick="() => ButtonClick(2)" data-id="2"><img src="/img/2.png" /></button>
+<button @onclick="() => ButtonClick(3)" data-id="3"><img src="/img/3.png" /></button>
+<br/>
+<button @onclick="() => ButtonClick(4)" data-id="4"><img src="/img/4.png" /></button>
+<button @onclick="() => ButtonClick(5)" data-id="5"><img src="/img/5.png" /></button>
+<button @onclick="() => ButtonClick(6)" data-id="6"><img src="/img/6.png" /></button>
+<br/>
+<button @onclick="() => ButtonClick(7)" data-id="7"><img src="/img/7.png" /></button>
+<button @onclick="() => ButtonClick(8)" data-id="8"><img src="/img/8.png" /></button>
+<button @onclick="() => ButtonClick(9)" data-id="9"><img src="/img/9.png" /></button>
+
+
+@code {
+
+	private HubConnection hubConnection;
+	private IJSObjectReference module;
+
+	protected override async Task OnInitializedAsync()
+	{
+
+		module = await jsRuntime.InvokeAsync<IJSObjectReference>(
+			"import", "./js/emote.js"
+		);
+
+		hubConnection = new HubConnectionBuilder()
+				.WithUrl(NavigationManager.ToAbsoluteUri("/hub/emote"))
+				.Build();
+
+		await hubConnection.StartAsync();
+
+	}
+
+	async Task ButtonClick(int id) {
+
+		await hubConnection.InvokeAsync("SendEmote", id);
+
+	}
+
+	public async ValueTask DisposeAsync() {
+		await hubConnection.DisposeAsync();
+	}
+
+}
