@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Blazored.LocalStorage;
 using Microsoft.JSInterop;
 using System.Globalization;
+using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 namespace FormComponents
 {
@@ -23,6 +24,7 @@ namespace FormComponents
 			builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 			builder.Services.AddBlazoredLocalStorage();
+			builder.Services.AddI18nText();
 
 			var host = builder.Build();
 
@@ -46,8 +48,8 @@ namespace FormComponents
 			}
 
 			// Set the current language
-			//var i18nText = host.Services.GetRequiredService<Toolbelt.Blazor.I18nText.I18nText>();
-			//await i18nText.SetCurrentLanguageAsync(result);
+			var i18nText = host.Services.GetRequiredService<Toolbelt.Blazor.I18nText.I18nText>();
+			await i18nText.SetCurrentLanguageAsync(result);
 
 		}
 	}

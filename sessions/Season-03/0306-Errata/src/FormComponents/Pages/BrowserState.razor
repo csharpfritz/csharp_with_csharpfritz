@@ -1,7 +1,8 @@
 ﻿@page "/state"
 @inject Blazored.LocalStorage.ILocalStorageService localStorage
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<h3>BrowserState</h3>
+<h3>@MyText?.BrowserStateDemo</h3>
 
 <EditForm Model="@TheHat" OnValidSubmit="@Submit">
 	
@@ -49,6 +50,7 @@
 	<label>Date Last Worn:
 	  <InputDate @bind-Value="TheHat.DateLastWorn"></InputDate>
 	</label>
+	<span>The date stored: @TheHat.DateLastWorn.ToShortDateString()</span>
   </p>
 
   <button type="submit">Create Hat</button>
@@ -59,8 +61,12 @@
 
 	public FritzHat TheHat { get; set; } = new FritzHat();
 
+	public I18nText.BlazorDemo MyText { get; set; }
+
 	protected override async Task OnInitializedAsync() {
-		
+
+		MyText = await I18nText.GetTextTableAsync<I18nText.BlazorDemo>(this);
+
 		if (await localStorage.ContainKeyAsync("thehat")) {
 			TheHat = await localStorage.GetItemAsync<FritzHat>("thehat");
 		}
