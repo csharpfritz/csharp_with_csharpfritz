@@ -20,6 +20,18 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+      Blazor.start({
+        applicationCulture: "en-US"
+      });
+
+      /* Detect the browser setting */
+			window.blazorCulture = {
+				get: () => (window.localStorage.getItem('BlazorCulture') || (navigator.languages && navigator.languages.length)) ? (window.localStorage.getItem('BlazorCulture') || navigator.languages[0]) :
+					navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en',
+				set: (value) => window.localStorage.setItem('BlazorCulture', value)
+			};
+    </script>
 </body>
 
 </html>

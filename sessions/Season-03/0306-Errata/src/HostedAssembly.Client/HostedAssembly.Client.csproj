@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\HostedAssembly.Shared.csproj" />
+    <ProjectReference Include="..\HostedAssembly.Shared\HostedAssembly.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Client\HostedAssembly.Client.csproj" />
-    <ProjectReference Include="..\Shared\HostedAssembly.Shared.csproj" />
+    <ProjectReference Include="..\HostedAssembly.Client\HostedAssembly.Client.csproj" />
+    <ProjectReference Include="..\HostedAssembly.Shared\HostedAssembly.Shared.csproj" />
   </ItemGroup>
 
 
