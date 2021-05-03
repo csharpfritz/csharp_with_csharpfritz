@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection;
+using BaseLib;
 
 namespace MyApp
 {
@@ -9,7 +11,7 @@ namespace MyApp
         static void Main(string[] args)
         {
 
-            Demo8();
+            Demo9();
 
         }
 
@@ -18,7 +20,7 @@ namespace MyApp
             // Let's inspect the FritzHat
             var type = typeof(FritzHat);
 
-            Console.WriteLine("A FritzHat is comprised of:");
+            Console.WriteLine($"A {nameof(FritzHat)} is comprised of:");
 
             foreach (var item in type.GetProperties())
             {
@@ -59,9 +61,10 @@ namespace MyApp
                 Theme = Theme.Tech
             };
 
-            // blazorHat.Name = "Foo";
+            //blazorHat.Name = "Foo";
 
             var type = blazorHat.GetType();
+            type.GetProperty("Name").SetValue(blazorHat, "djsqrd047's hat");
 
             Console.WriteLine("The BlazorHat is");
 
@@ -75,11 +78,16 @@ namespace MyApp
 
         static void Demo4() {
 
+            var sw = Stopwatch.StartNew();
+
             // Let's inspect the FritzHat
             var type = typeof(FritzHat);
 
+            Console.WriteLine($"typeof took {sw.ElapsedMilliseconds}ms");
+
             Console.WriteLine("A FritzHat has these methods:");
 
+            sw.Restart();
             foreach (var item in type.GetMethods())
             {
 
@@ -96,6 +104,7 @@ namespace MyApp
 
                 }
             }
+            Console.WriteLine($"Inspecting methods took {sw.ElapsedMilliseconds}ms");
 
         }
 
@@ -108,13 +117,12 @@ namespace MyApp
 
             var baseType = type.BaseType;
             var indent = "--";
-            while (baseType.Name != "Object") {
+            while (baseType != null) {
 
                 Console.WriteLine($"{indent} {baseType.Name}");
                 baseType = baseType.BaseType;
                 indent = indent + "--";
             }
-            Console.WriteLine($"{indent} {baseType.Name}");
 
         }
 
@@ -139,22 +147,77 @@ namespace MyApp
 
             foreach (var item in type.GetInterfaces())
             {
-                Console.WriteLine($"{item.Name}");             
+                Console.WriteLine($"{item.Name}");
             }
 
         }
 
         static void Demo8() {
 
-            // let's look at interfaces of the FritzHat
             var type = typeof(FritzHat);
 
             Console.WriteLine("Attributes of the FritzHat:");
 
             foreach (var item in type.CustomAttributes)
             {
-                Console.WriteLine($"{item.AttributeType.Name}");             
+                Console.WriteLine($"{item.AttributeType.Name}");
+
+                foreach (var arg in item.NamedArguments)
+                {
+                    Console.WriteLine($"{arg.MemberName}: {arg.TypedValue}");
+
+                }
+
             }
+
+        }
+
+        static void Demo8a() {
+
+            var fritzHatType = Assembly.GetExecutingAssembly().GetType("MyApp.FritzHat");
+
+            var myHat = (IHat)Activator.CreateInstance(fritzHatType);
+
+            myHat.Name = "Fritz's Dynamic Hat";
+
+            Console.WriteLine($"MyHat is a: {myHat.GetType().Name}");
+
+            var type = myHat.GetType();
+
+            Console.WriteLine("The created hat is");
+
+            foreach (var item in type.GetProperties())
+            {
+                Console.WriteLine($"{item.Name}: {item.PropertyType.Name} -- Value: {item.GetValue(myHat)}");
+            }
+
+        }
+
+        static void Demo9() {
+
+            // Let's work with the Assembly directly
+            var asm = Assembly.LoadFile($"/Users/jfritz/dev/csharp_with_csharpfritz/sessions/Season-04/0401-Reflection/src/MyLib/bin/Debug/net5.0/MyLib.dll");
+
+            foreach (var type in asm.GetTypes())
+            {
+                Console.WriteLine($"Found type: {type.Name}");
+            }
+
+            var contactType = asm.GetType("MyLib.Contact");
+
+            var myContact = Activator.CreateInstance(contactType) as IContact;
+            myContact.GivenName = "Jeff";
+            myContact.SurName = "Fritz";
+            myContact.Age = 31;
+            // contactType.GetProperty("GivenName").SetValue(myContact, "Jeff");
+            // contactType.GetProperty("SurName").SetValue(myContact, "Fritz");
+            // contactType.GetProperty("Age").SetValue(myContact, 29);
+
+            foreach (var item in contactType.GetProperties())
+            {
+                Console.WriteLine($"{item.Name}: {item.PropertyType.Name} -- Value: {item.GetValue(myContact)}");
+            }
+
 
         }
 

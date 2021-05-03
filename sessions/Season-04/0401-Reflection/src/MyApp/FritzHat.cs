@@ -1,20 +1,22 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace MyApp
 {
 
-    [Fritz(true)]
-    public class FritzHat : BaseHat, IHat {
+    [Fritz(OnStream=true)]
+    public class FritzHat : BaseHat, IHat, IPresentedOnStream {
 
         public int Id { get; set; }
 
-        public string Name { get; init; }
+        [JsonPropertyName("NameOfFritzsHat")]
+        public string Name { get; set; }
 
         public DateTime AcquiredDate { get; set; }
 
         public Theme Theme { get; set; }
 
-        public void Wash(DateTime washDate) {
+        public virtual void Wash(DateTime washDate) {
 
             Console.WriteLine($"Washed the {Name} hat");
 
