@@ -9,7 +9,7 @@ namespace sample
 
     public static void SimpleNull() {
 
-      Hat myHat = default;
+      Hat myHat = new Hat();
 
       Console.WriteLine($"MyHat is a: {myHat.GetType().Name} and {myHat}");
 
@@ -19,13 +19,13 @@ namespace sample
 
       var myHat = new Hat();
 
-      Console.WriteLine($"MyHat's name is {myHat.Name?.GetType().Name}: {myHat.Name?.ToString()}");
+      Console.WriteLine($"MyHat's name is {myHat.AcquiredYear.GetType().Name}: {myHat.AcquiredYear.ToString()}");
 
     }
 
     public static void NullForgiving() {
 
-      Hat myHat = Find();
+      var myHat = Find();
 
       Console.WriteLine($"myHat is named {myHat!.Name}");
 

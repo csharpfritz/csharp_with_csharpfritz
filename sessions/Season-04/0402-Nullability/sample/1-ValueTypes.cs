@@ -6,9 +6,9 @@ namespace sample {
 
     public static void Defaults() {
 
-      var i = default(int);
+            int? i = null; //default(int);
 
-      Console.WriteLine($"Default {i.GetType().Name}: {i}");
+      Console.WriteLine($"Default {i?.GetType().Name}: {i + 100}");
 
     }
 
