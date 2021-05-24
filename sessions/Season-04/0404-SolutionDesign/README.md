@@ -10,6 +10,9 @@ I've recently written a [blog post on the topic of growing a project into an ent
 
 In this session, we're going to work with the [StyleCop](https://www.nuget.org/packages/StyleCop.Analyzers) and [xUnit](https://www.nuget.org/packages/xunit.analyzers/) analyzers
 
+TODO:  Add entry about pausing analyzers or cancelling a specific rule.
+TODO:  How to configure tabs vs. spaces
+
 ## C# File Structure
 
 ## Project Structure
