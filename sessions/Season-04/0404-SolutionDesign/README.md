@@ -16,10 +16,16 @@ In this session, we're going to work with the [StyleCop](https://www.nuget.org/p
 
 ## Test Project Structure
 
+- Use NAME.Test not Test.NAME to avoid namespace collisions
+
 ### Given - When - Then
 
 ### AAA Test Structure
 
 ### Test Re-use
+
+#### Theory / InlineData
+
+#### Base Classes
 
 ## Solution Structure - Growing from Folders to Projects

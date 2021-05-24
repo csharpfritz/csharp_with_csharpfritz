@@ -23,6 +23,25 @@ namespace MyApp.Test.GivenCalculator
 
 		}
 
+		[Fact]
+		public void ShouldCallNext() {
+
+			// arrange
+			bool nextOpCalled = false;
+			decimal NextOp(decimal arg1, decimal arg2) {
+				nextOpCalled = true;
+				return 0m;
+			}
+
+			// act
+			var sut = new Calculator("Fritz");
+			sut.Sum(1, 2, NextOp);
+
+			// assert
+			Assert.True(nextOpCalled);
+
+		}
+
 	}
 
 }
