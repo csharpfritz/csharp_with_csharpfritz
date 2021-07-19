@@ -117,15 +117,17 @@ The built-in WPF controls are listed here:
 
 - **User Information:** AccessText, Label, Popup, ProgressBar, StatusBar, TextBlock, and ToolTip.
 
-## Databinding with Entity Framework Sample
-
-https://docs.microsoft.com/en-us/ef/core/get-started/wpf
-
 ## Working with a Web Service
 
 ![The VisualSearch sample, searching Bing for "csharpfritz"](visualsearch.png)
 
 Let's walk through the image search sample from the Learn Module ["Write Internet Connected Windows Apps"](https://docs.microsoft.com/learn/modules/build-internet-connected-windows10-apps/1-building-app-that-uses-cloud-service?pivots=wpf).  We'll write a simple application that searches Bing for an image and displays it in an image box.
+
+## Databinding with Entity Framework Sample
+
+![Parent-Child Databinding form sample showing two related grids](Databinding.PNG)
+
+The Entity Framework team shared [a sample](https://docs.microsoft.com/ef/core/get-started/wpf) that shows how to bind to a simple Parent-Child form to a data source. This sample shows how to use Lazy Loading and CollectionViewSource objects to define and automatically bind a DataGrid to a database table
 
 ## Migrating from .NET Framework to .NET Core 
 
