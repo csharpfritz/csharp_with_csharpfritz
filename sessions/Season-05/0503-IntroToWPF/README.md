@@ -45,7 +45,7 @@ WPF lets you develop an application using both markup and code-behind, an experi
 
 ## Hello World with WPF
 
-![A messagebox saying 'Welcome WPF'](FirstApp.png)
+![A messagebox saying 'Welcome WPF'](FirstApp.PNG)
 
 Let's create our first application with a simple button that triggers a message box.  We'll create a new WPF application with the command-line command:
 
