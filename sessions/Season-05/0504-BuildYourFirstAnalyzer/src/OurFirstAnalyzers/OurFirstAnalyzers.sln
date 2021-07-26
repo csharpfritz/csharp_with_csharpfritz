@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31507.150
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BraceAnalyzer", "BraceAnalyzer\BraceAnalyzer\BraceAnalyzer.csproj", "{A63E0DF2-AE72-4687-9661-2D11A2EF53C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BraceAnalyzer.CodeFixes", "BraceAnalyzer\BraceAnalyzer.CodeFixes\BraceAnalyzer.CodeFixes.csproj", "{9F839F27-D4C8-47A8-993F-C10466D313AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BraceAnalyzer.Package", "BraceAnalyzer\BraceAnalyzer.Package\BraceAnalyzer.Package.csproj", "{B11FCDFF-43CF-4C61-92D0-AFE52C41B92C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BraceAnalyzer.Test", "BraceAnalyzer\BraceAnalyzer.Test\BraceAnalyzer.Test.csproj", "{7769A301-E263-4E80-8D5B-CBFCE8DD781C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BraceAnalyzer.Vsix", "BraceAnalyzer\BraceAnalyzer.Vsix\BraceAnalyzer.Vsix.csproj", "{BB2C9A41-2715-4330-B3B6-920A07A314E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A63E0DF2-AE72-4687-9661-2D11A2EF53C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A63E0DF2-AE72-4687-9661-2D11A2EF53C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A63E0DF2-AE72-4687-9661-2D11A2EF53C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A63E0DF2-AE72-4687-9661-2D11A2EF53C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F839F27-D4C8-47A8-993F-C10466D313AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F839F27-D4C8-47A8-993F-C10466D313AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F839F27-D4C8-47A8-993F-C10466D313AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F839F27-D4C8-47A8-993F-C10466D313AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B11FCDFF-43CF-4C61-92D0-AFE52C41B92C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B11FCDFF-43CF-4C61-92D0-AFE52C41B92C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B11FCDFF-43CF-4C61-92D0-AFE52C41B92C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B11FCDFF-43CF-4C61-92D0-AFE52C41B92C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7769A301-E263-4E80-8D5B-CBFCE8DD781C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7769A301-E263-4E80-8D5B-CBFCE8DD781C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7769A301-E263-4E80-8D5B-CBFCE8DD781C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7769A301-E263-4E80-8D5B-CBFCE8DD781C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB2C9A41-2715-4330-B3B6-920A07A314E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB2C9A41-2715-4330-B3B6-920A07A314E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB2C9A41-2715-4330-B3B6-920A07A314E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB2C9A41-2715-4330-B3B6-920A07A314E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6DA80717-3378-4964-B33F-3A69400C4A88}
+	EndGlobalSection
+EndGlobal
