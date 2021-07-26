@@ -1,0 +1,72 @@
+﻿@page "/MyForm"
+
+<h3>A new Fritz Hat</h3>
+
+<EditForm Model="@TheHat" OnValidSubmit="@Submit">
+	
+  <DataAnnotationsValidator />
+  <ValidationSummary></ValidationSummary>
+
+  <p>
+	  <label>Name:
+		<InputText @bind-Value="TheHat.Name" />
+	  </label>
+  </p>
+
+  <p>
+	  <label>Description:
+	  <InputTextArea @bind-Value="TheHat.Description"></InputTextArea>
+	</label>
+  </p>
+
+  <p>
+	  <label>Needs Washing?
+		<InputCheckbox @bind-Value="TheHat.NeedsWashing"></InputCheckbox>
+	  </label>
+  </p>
+
+  <p>
+	  <label>Genre:
+		<InputSelect @bind-Value="TheHat.Genre">
+		  <option value="">Select Genre...</option>
+		  <option value="TV">TV</option>
+		  <option value="Movie">Movie</option>
+		  <option value="Sport">Sport</option>
+		  <option value="Comics">Comics</option>
+		  <option value="Tech">Tech</option>
+		</InputSelect>
+	  </label>
+  </p>
+
+  <p>
+	<label>Year Acquired:
+	  <InputNumber @bind-Value="TheHat.YearAcquired" ></InputNumber>
+	</label>
+  </p>
+
+  <p>
+	<label>Date Last Worn:
+	  <InputDate @bind-Value="TheHat.DateLastWorn"></InputDate>
+	</label>
+  </p>
+
+  <button type="submit">Create Hat</button>
+
+</EditForm>
+
+@code {
+
+	public FritzHat TheHat { get; set; } = new FritzHat();
+
+	private async Task Submit() 
+	{
+
+		Console.WriteLine(TheHat);
+
+		// Save the hat to a database using an API
+		await Task.Delay(10);
+		TheHat = new FritzHat();
+
+	}
+
+}
