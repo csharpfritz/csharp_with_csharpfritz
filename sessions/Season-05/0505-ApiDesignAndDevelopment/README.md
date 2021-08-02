@@ -55,6 +55,25 @@ Returns data and an indicator like `next_cursor` so you can make your next reque
 /products?cursor=hijkl&limit=10
 ```
 
+**Notable API:** Twitch does this with their [`GetStreams` API](https://dev.twitch.tv/docs/api/reference#get-streams)  
+
+```
+GET https://api.twitch.tv/helix/streams?after=abcdefgh12345
+```
+
+Returns:
+
+```json
+  "data": [
+    ...
+  ],
+  "pagination": {
+    "cursor": "ghijk1234"
+  }
+}
+```
+
+
 ### Offset/Count paging
 
 ```
@@ -63,6 +82,12 @@ Returns data and an indicator like `next_cursor` so you can make your next reque
 
 Returns 10 records starting with record #11 
 
+**Notable API:*** Facebook allows you to query the feed with a link like:
+
+```
+https://facebook.com/me/feed?limit=25&offset=50
+```
+
 ### Keyset-based paging
 
 ```
@@ -70,6 +95,12 @@ Returns 10 records starting with record #11
 ```
 
 Returns 10 records created AFTER `OrderId` with key 10123
+
+**Notable API:** Twitch provides this pagination with their clips but instead of taking a key, receives a timestamp
+
+```
+GET https://api.twitch.tv/helix/clips?started_at=2021-08-01T09:10:00-00:00&first=100
+```
 
 ## Uploading files to an API
 
