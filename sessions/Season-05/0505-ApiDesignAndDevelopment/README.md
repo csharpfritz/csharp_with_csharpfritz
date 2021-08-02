@@ -9,7 +9,6 @@ In response to [question #79](https://github.com/csharpfritz/csharp_with_csharpf
 - Caching
 - Pagination Strategies
 - Uploading files
-- Authentication with JWT
 - Connecting to a frontend framework: Razor Pages, Blazor, etc
 - Deployment - Containers and App Service
 
@@ -148,10 +147,6 @@ Security steps that reduce the likelihood of a successful attack are:
 ### Server Configuration
 
 You will need to [extend the configuration of Kestrel](https://docs.microsoft.com/aspnet/core/mvc/models/file-uploads?view=aspnetcore-5.0#server-and-app-configuration) in order to receive larger files.
-
-## JWT Authentication
-
-Blog at: https://devblogs.microsoft.com/aspnet/jwt-validation-and-authorization-in-asp-net-core/
 
 ## Configuring CORS
 
