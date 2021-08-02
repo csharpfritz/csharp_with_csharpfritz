@@ -83,13 +83,17 @@ Security steps that reduce the likelihood of a successful attack are:
 
 ### Server Configuration
 
-YOu will need to [extend the configuration of Kestrel](https://docs.microsoft.com/aspnet/core/mvc/models/file-uploads?view=aspnetcore-5.0#server-and-app-configuration) in order to receive larger files.
+You will need to [extend the configuration of Kestrel](https://docs.microsoft.com/aspnet/core/mvc/models/file-uploads?view=aspnetcore-5.0#server-and-app-configuration) in order to receive larger files.
 
 ## JWT Authentication
 
 Blog at: https://devblogs.microsoft.com/aspnet/jwt-validation-and-authorization-in-asp-net-core/
 
 ## Connecting to a front-end framework
+
+With Blazor, use `HttpClient` to request and interact with data from the server:
+
+
 
 ## Deploying - Docker, Azure, etc
 
