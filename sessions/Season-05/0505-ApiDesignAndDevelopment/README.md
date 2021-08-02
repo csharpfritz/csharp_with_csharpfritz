@@ -89,11 +89,55 @@ You will need to [extend the configuration of Kestrel](https://docs.microsoft.co
 
 Blog at: https://devblogs.microsoft.com/aspnet/jwt-validation-and-authorization-in-asp-net-core/
 
+## Configuring CORS
+
+Cross-Origin Resource Sharing (CORS) can be configured in your application with a policy using settings like the following:
+
+```csharp
+
+public void ConfigureServices(IServiceCollection services)
+{
+
+...
+
+	services.AddCors(options =>
+	{
+		options.AddPolicy(name: "MyPolicy",
+			builder =>
+			{
+					builder.AllowAnyOrigin();
+						.AllowAnyHeader();
+			});
+	});
+
+
+}
+
+```
+
+and then add the CORS policy to the HTTP pipeline with:
+
+```csharp
+	app.UseRouting();
+
+	app.UseCors("MyPolicy");
+
+	app.UseAuthorization();
+```
+
 ## Connecting to a front-end framework
 
 With Blazor, use `HttpClient` to request and interact with data from the server:
 
+```csharp
+await Http.GetFromJsonAsync<WeatherForecast[]>("https://localhost:5011/WeatherForecast");
+```
 
+We can add headers using standard `HttpClient.DefaultRequestHeaders` properties:
+
+```csharp
+Http.DefaultRequestHeaders.Add("X-ApplicationId", "My Blazor App");
+```
 
 ## Deploying - Docker, Azure, etc
 
