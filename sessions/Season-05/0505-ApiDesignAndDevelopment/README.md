@@ -5,7 +5,6 @@ In response to [question #79](https://github.com/csharpfritz/csharp_with_csharpf
 ## Topics
 
 - Build an API with ASP()[].NET Core and Swagger
-- Design patterns for APIs
 - API Versioning
 - Caching
 - Pagination Strategies
@@ -30,13 +29,47 @@ Customize it further with [Swashbuckle tools](https://docs.microsoft.com/aspnet/
 
 You can generate and build client-side code with the dotnet-openapi tool.  Details at https://docs.microsoft.com/aspnet/core/web-api/Microsoft.dotnet-openapi
 
-## Design Patterns
-
 ## API Versioning
+
+Versioning in Swagger, [Scott Hanselman has a blog post](https://www.hanselman.com/blog/aspnet-core-restful-web-api-versioning-made-easy) to get us started.
 
 ## Caching
 
 ## Pagination
+
+Pagination has no ideal solution, with different approaches possible:
+
+- Cursor-based paging
+- Offset/Count paging
+- Keyset-based paging
+
+### Cursor-based paging
+
+```
+/products?cursor=abcdefg&limit=10
+```
+
+Returns data and an indicator like `next_cursor` so you can make your next request:
+
+```
+/products?cursor=hijkl&limit=10
+```
+
+### Offset/Count paging
+
+```
+/products?offset=10&count=10
+```
+
+Returns 10 records starting with record #11 
+
+### Keyset-based paging
+
+```
+/orders?limit=10&since_id=10123
+```
+
+Returns 10 records created AFTER `OrderId` with key 10123
 
 ## Uploading files to an API
 
@@ -91,7 +124,7 @@ Blog at: https://devblogs.microsoft.com/aspnet/jwt-validation-and-authorization-
 
 ## Configuring CORS
 
-Cross-Origin Resource Sharing (CORS) can be configured in your application with a policy using settings like the following:
+[Cross-Origin Resource Sharing (CORS) can be configured](https://docs.microsoft.com/aspnet/core/security/cors?view=aspnetcore-5.0) in your application with a policy using settings like the following:
 
 ```csharp
 
