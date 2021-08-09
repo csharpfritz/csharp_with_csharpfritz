@@ -19,7 +19,7 @@ namespace BraceAnalyzer
 	public class BraceAnalyzerCodeFixProvider : CodeFixProvider
 	{
 
-		private const string title = "Add Brace";
+		private const string title = "Fritz says Add Braces!";
 
 		public sealed override ImmutableArray<string> FixableDiagnosticIds
 		{
@@ -39,9 +39,6 @@ namespace BraceAnalyzer
 			// TODO: Replace the following code with your own analysis, generating a CodeAction for each fix to suggest
 			var diagnostic = context.Diagnostics.First();
 			var diagnosticSpan = diagnostic.Location.SourceSpan;
-
-			// Find the type declaration identified by the diagnostic.
-			var declaration = root.FindToken(diagnosticSpan.Start).Parent.AncestorsAndSelf().OfType<TypeDeclarationSyntax>().First();
 
 			// Register a code action that will invoke the fix.
 			context.RegisterCodeFix(

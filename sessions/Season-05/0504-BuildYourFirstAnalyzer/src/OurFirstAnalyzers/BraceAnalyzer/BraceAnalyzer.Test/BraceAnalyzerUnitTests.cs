@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Testing;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using VerifyCS = BraceAnalyzer.Test.CSharpCodeFixVerifier<
 		BraceAnalyzer.BraceAnalyzerAnalyzer,
@@ -33,7 +35,7 @@ namespace ConsoleApp1
         {
 
           if (true)
-              [|Console|].WriteLine(""This is a test"");
+              Console.WriteLine(""This is a test"");
 
 				}
 	}
