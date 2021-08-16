@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# BraceAnalyzer: Enclose statement with curly braces
+dotnet_diagnostic.BraceAnalyzer.severity = error
