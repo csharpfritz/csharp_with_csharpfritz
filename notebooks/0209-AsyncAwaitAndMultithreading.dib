@@ -1,0 +1,5 @@
+#!markdown
+
+# Async, Await, and Multithreading
+
+As part of the .NET ecosystem, the C# language has access to all of the features of the .NET frameworks and runtime.  This allows us to have access to the threading and memory management features of the .NET runtime.  This is a great feature for writing asynchronous code.  In C#, we can use the **async** and **await** keywords to write asynchronous code.
