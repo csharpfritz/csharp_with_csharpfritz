@@ -415,7 +415,7 @@ IList<int> GetPrimeListWithParallel(IList<int> numbers)
 		if (IsPrime(number)) primeNumbers.Add(number);
 	} );
 
-	return primeNumbers.ToList();
+  return primeNumbers.ToList();
 }
 
 
