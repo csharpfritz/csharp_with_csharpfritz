@@ -24,7 +24,7 @@ When a method is called with the async keyword, the method will execute asynchro
 	
 	 If yes, then your work is CPU bound
 
-## Example 1:  Get data from the network
+## I/O bound Example:  Get data from the network
 
 Let's fetch the .NET homepage from the network using the `HttpClient` class.	We'll use the `async` keyword to make this code asynchronous.  The `await` keyword is used to suspend the calling method until the awaited task completes.  While this code fetches data from the .NET website, the normal code continues to run.
 
@@ -55,6 +55,7 @@ If we write our code WITHOUT using `await`, it will continue to run while the ne
 var dotNet = GetAsync("https://dot.net");
 display($"Is it completed: {dotNet.IsCompleted}");
 dotNet.Wait();
+display($"Is it completed: {dotNet.IsCompleted}");
 display(dotNet.Result);
 
 #!markdown
@@ -63,7 +64,7 @@ Here, the `Wait` method is called on the `Task` object returned from the `HttpCl
 
 #!markdown
 
-## Example 2: Multiple Asynchronous Operations
+## Example: Multiple Asynchronous Operations
 
 We can shift things a little and run multiple fetch requests in parallel.  We won't `await` the methods, but instead stash the `Task` in variables.  We'll the use the `Task.WhenAll` method to wait for all of the tasks to complete.  
 
@@ -89,7 +90,8 @@ We can also use the `Task` object to continue and run other methods when it comp
 
 #!csharp
 
-var dotNet = GetAsync("https://dot.net").ContinueWith(task =>
+var dotNet = GetAsync("https://dot.net")
+	.ContinueWith(task =>
 {
 	display(task.IsCompleted);
 	display($"DotNet HTML length: {task.Result.Length}");
@@ -106,7 +108,8 @@ You may need to run an async method synchronously due to being hosted in a metho
 
 #!csharp
 
-var dotNet = GetAsync("https://dot.net").GetAwaiter().GetResult();
+var dotNet = GetAsync("https://dot.net")
+	.GetAwaiter().GetResult();
 display($"DotNet HTML length: {dotNet.Length}");
 
 var bing = GetAsync("https://bing.com");
@@ -129,61 +132,61 @@ class Coffee{}
 
 Juice PourOJ()
 {
-		Console.WriteLine("Pouring orange juice");
-		return new Juice();
+	Console.WriteLine("Pouring orange juice");
+	return new Juice();
 }
 
 void ApplyJam(Toast toast) => 
-		Console.WriteLine("Putting jam on the toast");
+	Console.WriteLine("Putting jam on the toast");
 
 void ApplyButter(Toast toast) => 
-		Console.WriteLine("Putting butter on the toast");
+	Console.WriteLine("Putting butter on the toast");
 
 Toast ToastBread(int slices)
 {
-		for (int slice = 0; slice < slices; slice++)
-		{
-				Console.WriteLine("Putting a slice of bread in the toaster");
-		}
-		Console.WriteLine("Start toasting...");
-		Task.Delay(3000).Wait();
-		Console.WriteLine("Remove toast from toaster");
+	for (int slice = 0; slice < slices; slice++)
+	{
+			Console.WriteLine("Putting a slice of bread in the toaster");
+	}
+	Console.WriteLine("Start toasting...");
+	Task.Delay(3000).Wait();
+	Console.WriteLine("Remove toast from toaster");
 
-		return new Toast();
+	return new Toast();
 }
 
 Bacon FryBacon(int slices)
 {
-		Console.WriteLine($"putting {slices} slices of bacon in the pan");
-		Console.WriteLine("cooking first side of bacon...");
-		Task.Delay(3000).Wait();
-		for (int slice = 0; slice < slices; slice++)
-		{
-				Console.WriteLine("flipping a slice of bacon");
-		}
-		Console.WriteLine("cooking the second side of bacon...");
-		Task.Delay(3000).Wait();
-		Console.WriteLine("Put bacon on plate");
+	Console.WriteLine($"putting {slices} slices of bacon in the pan");
+	Console.WriteLine("cooking first side of bacon...");
+	Task.Delay(3000).Wait();
+	for (int slice = 0; slice < slices; slice++)
+	{
+			Console.WriteLine("flipping a slice of bacon");
+	}
+	Console.WriteLine("cooking the second side of bacon...");
+	Task.Delay(3000).Wait();
+	Console.WriteLine("Put bacon on plate");
 
-		return new Bacon();
+	return new Bacon();
 }
 
 Egg FryEggs(int howMany)
 {
-		Console.WriteLine("Warming the egg pan...");
-		Task.Delay(3000).Wait();
-		Console.WriteLine($"cracking {howMany} eggs");
-		Console.WriteLine("cooking the eggs ...");
-		Task.Delay(3000).Wait();
-		Console.WriteLine("Put eggs on plate");
+	Console.WriteLine("Warming the egg pan...");
+	Task.Delay(3000).Wait();
+	Console.WriteLine($"cracking {howMany} eggs");
+	Console.WriteLine("cooking the eggs ...");
+	Task.Delay(3000).Wait();
+	Console.WriteLine("Put eggs on plate");
 
-		return new Egg();
+	return new Egg();
 }
 
 Coffee PourCoffee()
 {
-		Console.WriteLine("Pouring coffee");
-		return new Coffee();
+	Console.WriteLine("Pouring coffee");
+	return new Coffee();
 }
 
 #!markdown
@@ -298,15 +301,17 @@ Stephen Toub from the .NET team has a [great article diving deeper on this topic
 
 public async Task MakeEggs()
 {
-	await Task.Delay(2000).ConfigureAwait(false);
+	display(System.Threading.Thread.CurrentThread.ManagedThreadId);
+	await Task.Delay(2000).ConfigureAwait(true);
 	display("2 seconds later, I'm done making eggs.");
+	display(System.Threading.Thread.CurrentThread.ManagedThreadId);
 }
 
 await MakeEggs();
 
 #!markdown
 
-## Task.Run
+## CPU intensive tasks and Task.Run
 
 You can queue work to *potentially* be executed on another thread with the Task.Run method.  This method is similar to the `Task.Factory.StartNew` method, but it does not return a `Task` object.  Instead, it returns a `Task` object that represents the work that was queued.  The `Task` object is a pointer to the state of the background process and it expects to return from the completed process a `Task` object.
 
@@ -327,6 +332,8 @@ t.Wait();
 
 When you're running a long running task with this method, you will want the ability to cancel processing at some point.  You can do this by passing a `CancellationToken` object that will signal when the task should stop.
 
+You can pass the token to the `Task.Run` method as the last parameter.  The `Task.Run` method will only start the task if the token is not cancelled.
+
 #!csharp
 
 using System.Threading;
@@ -340,16 +347,18 @@ var t = Task.Run(async () =>
 	while (!token.IsCancellationRequested)
 	{
 		display("*");
-		await Task.Delay(100);
+		await Task.Delay(100, token);
 	}
-
-	display("Task completed.");
-
+	
+	display("Task completed (Inner).");
+	
 }, token);
 
-await Task.Delay(200);
+await Task.Delay(300);
 source.Cancel();
 // await Task.Delay(1000);
+display($"Task is cancelled: {t.IsCanceled}");
+// t.Wait();
 
 if (t.IsCompleted)
 {
@@ -389,16 +398,22 @@ bool IsPrime(int number)
 }
 
 // Get primes synchronously
-IList<int> GetPrimeList(IList<int> numbers) => numbers.Where(IsPrime).ToList();
+IList<int> GetPrimeList(IList<int> numbers) 
+	=> numbers.Where(IsPrime).ToList();
 
 IList<int> GetPrimeListWithParallel(IList<int> numbers)
 {
 	var primeNumbers = new System.Collections.Concurrent.ConcurrentBag<int>();
 
-	Parallel.ForEach(numbers, number =>
+	display($"Processors: {Environment.ProcessorCount}");
+	var options = new ParallelOptions() { 
+		MaxDegreeOfParallelism = Environment.ProcessorCount 
+	};
+
+	Parallel.ForEach(numbers, options, number =>
 	{
 		if (IsPrime(number)) primeNumbers.Add(number);
-	});
+	} );
 
 	return primeNumbers.ToList();
 }
