@@ -28,6 +28,11 @@ Customize it further with [Swashbuckle tools](https://docs.microsoft.com/aspnet/
 
 You can generate and build client-side code with the dotnet-openapi tool.  Details at https://docs.microsoft.com/aspnet/core/web-api/Microsoft.dotnet-openapi
 
+### Adding Swagger to .NET 6 Minimal APIs
+
+https://devblogs.microsoft.com/aspnet/asp-net-core-updates-in-net-6-preview-4/
+
+
 ## API Versioning
 
 Versioning in Swagger, [Scott Hanselman has a blog post](https://www.hanselman.com/blog/aspnet-core-restful-web-api-versioning-made-easy) to get us started.

@@ -27,6 +27,8 @@ namespace VersionApi.Controllers
         }
 
         [HttpGet]
+				[MapToApiVersion( "1.0" )]
+				[MapToApiVersion( "2.0" )]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
