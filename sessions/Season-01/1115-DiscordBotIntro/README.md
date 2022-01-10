@@ -56,6 +56,10 @@ dotnet add package dsharpplus
 
 ### Add first code to Program.cs
 
+Get your Bot token from the `Bot` page of the Discord developer portal, and copy it to the clipboard with this `Copy` button:
+
+![Bot Information page with Copy button](docs/6-Token.png)
+
 ### Add Configuration
 
 ```
@@ -63,7 +67,11 @@ dotnet add package Microsoft.Extensions.Configuration.Binder
 dotnet add package Microsoft.Extensions.Configuration.Json
 ```
 
+Read hierarchical values using the `:` separator
+
 ### User Secrets
+
+From the [Microsoft Docs](https://docs.microsoft.com/aspnet/core/security/app-secrets), we can add User-Secrets with the following commands:
 
 ```
 dotnet add package Microsoft.Extensions.Configuration.UserSecrets
