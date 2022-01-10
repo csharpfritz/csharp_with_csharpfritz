@@ -1,4 +1,4 @@
-# Session 1114 - Building a Discord Bot
+# Session 1115 - Building a Discord Bot
 
 We've learned a bit about how to use the C# language, but we haven't put it together into a meaningful application yet.  In this session, we will assemble some of that knowledge and create a first chat bot that will work with [Discord](https://discordapp.com).
 
