@@ -1,0 +1,13 @@
+﻿.table {
+
+	th {
+		font-weight: bold;
+		color: red !important;
+		background-color: darkgray;
+	}
+
+	tbody tr:nth-child(2n+1) {
+		background-color: skyblue;
+	}
+
+}

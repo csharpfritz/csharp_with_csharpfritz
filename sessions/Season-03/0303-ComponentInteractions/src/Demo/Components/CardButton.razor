@@ -1,0 +1,12 @@
+<div>Here is a button: <button @onclick="DoMoreWithClick">The Button</button></div>
+
+@code {
+
+    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    public async Task DoMoreWithClick(MouseEventArgs args) {
+        Console.WriteLine("The button was clicked");
+        await OnClick.InvokeAsync(args);
+    }
+
+}

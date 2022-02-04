@@ -1,0 +1,6 @@
+.my-component {
+    border: 3px dotted blue;
+    padding: 1em;
+    margin: 1em 0;
+    background-image: url('background.png');
+}
