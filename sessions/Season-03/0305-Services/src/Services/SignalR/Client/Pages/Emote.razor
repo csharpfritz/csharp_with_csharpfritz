@@ -1,0 +1,41 @@
+﻿@page "/emote"
+
+@using Microsoft.AspNetCore.SignalR.Client
+@inject NavigationManager NavigationManager
+@inject IJSRuntime jsRuntime
+@implements IAsyncDisposable
+
+<h3>Emote Demo</h3>
+
+@code {
+
+	private HubConnection hubConnection;
+	private IJSObjectReference module;
+
+	protected override async Task OnInitializedAsync()
+	{
+
+		module = await jsRuntime.InvokeAsync<IJSObjectReference>(
+			"import", "./js/emote.js"
+		);
+
+		hubConnection = new HubConnectionBuilder()
+				.WithUrl(NavigationManager.ToAbsoluteUri("/hub/emote"))
+				.Build();
+
+		hubConnection.On<int>("FlyEmote", async (buttonId) =>
+		{
+			await module.InvokeVoidAsync("flyEmote", buttonId);
+		});
+
+		await hubConnection.StartAsync();
+
+		await module.InvokeVoidAsync("start");
+
+	}
+
+	public async ValueTask DisposeAsync() {
+		await hubConnection.DisposeAsync();
+	}
+
+}

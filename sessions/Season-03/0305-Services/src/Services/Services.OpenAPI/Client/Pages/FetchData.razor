@@ -1,0 +1,66 @@
+﻿@page "/fetchdata"
+@inject HttpClient http
+
+<h1>Weather forecast for @City</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (forecasts == null)
+{
+	<p><em>Loading...</em></p>
+}
+else
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Temp. (C)</th>
+				<th>Temp. (F)</th>
+				<th>Summary</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var forecast in forecasts)
+			{
+				<tr>
+					<td>@forecast.Date.DateTime.ToShortDateString()</td>
+					<td>@forecast.TemperatureC</td>
+					<td>@forecast.TemperatureF</td>
+					<td>@forecast.Summary</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+
+@code {
+	private ICollection<WeatherForecast> forecasts;
+
+	[Parameter]
+	public string City { get; set; } = "Springfield";
+
+	private int _Counter = 0;
+
+	protected override async Task OnParametersSetAsync() {
+
+		Console.WriteLine($"Parameters set! {_Counter++}");
+
+		var client = new WeatherForecastClient("/", http);
+		forecasts = await client.WeatherForecastAsync();
+
+	}
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+
+		//if (firstRender)
+		//{
+		//	var client = new WeatherForecastClient("/", http);
+		//	forecasts = await client.WeatherForecastAsync();
+		//	StateHasChanged();
+		//}
+
+	}
+
+}
