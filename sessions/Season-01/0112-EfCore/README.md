@@ -132,7 +132,7 @@ WithNoTracking()
 ## Relational Data
 
 Foreign Keys / Navigation property
-https://docs.microsoft.com/en-us/ef/core/modeling/relationships
+https://docs.microsoft.com/ef/core/modeling/relationships
 
 Many to Many
 ![Many to Many relationship](img/ManyToMany.PNG)

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "01-Minimal": {
+      "commandName": "Project",
+      "commandLineArgs": "foo bar baz bat"
+    }
+  }
+}

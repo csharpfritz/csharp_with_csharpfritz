@@ -4,7 +4,7 @@
 
 Blazor is built with web standards in mind, and works in all modern browsers (including mobile browsers) that fully support the HTML5 specification.
 
-All of the tools you need to get started with Blazor ship with the [.NET SDK](https://get.dot.net) (version 3.1 and later).  You will have great editor support in Visual Studio 2019 and Visual Studio Code.  The included demos are built to work with .NET 5.
+All of the tools you need to get started with Blazor ship with the [.NET SDK](https://get.dot.net) (version 3.1 and later).  You will have great editor support in Visual Studio 2019 and Visual Studio Code.  The included demos are built to work with .NET 6.
 
 ## Who's Using Blazor?
 
@@ -51,7 +51,7 @@ Content is now delivered in 3 applications:  Client, Server, and Shared.
 - **Server** is the ASP.NET Core application that hosts the server-side Api and will deliver the HTML of the Blazor application.
 - **Shared** contains classes that are used by both the client and server projects
 
-Inspect the `Server/Startup.cs` file to see how the Blazor Web Assembly app's `index.html` is referenced as a location to start the application.
+Inspect the `Server/Program.cs` file to see how the Blazor Web Assembly app's `index.html` is referenced as a location to start the application.
 
 ```c#
 ...
@@ -77,7 +77,7 @@ This type of Blazor application runs completely on the server and delivers user-
 
 `dotnet new blazorserver -o FirstServer`
 
-This is an ASP.NET Core application and has a few enhancements to support Blazor.  Look at the `Startup.cs` class to see the enhancements to support the framework.
+This is an ASP.NET Core application and has a few enhancements to support Blazor.  Look at the `Program.cs` class to see the enhancements to support the framework.
 
 The contents of the Pages and Shared folders are similar to the Web Assembly app, with the addition of the `_Host.cshtml` file that replaces the `wwwroot/index.html` file that we saw previously.
 
