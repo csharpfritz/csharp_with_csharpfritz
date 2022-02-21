@@ -34,6 +34,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+#region Minimal APIs for Contacts
+/* */
 app.MapGet("/api/Contacts", async (MyContext db) =>
 {
 	return Results.Ok(await db.Contacts.Select(c => c.AsViewModel()).ToArrayAsync());
@@ -81,6 +83,11 @@ app.MapDelete("/api/Contacts/{id:int}", async (MyContext db, [FromRoute] int id)
 	return Results.NotFound();
 
 });
+/* */
+#endregion
+
+
+//app.MapInstantAPIs<MyContext>();
 
 app.MapRazorPages();
 app.MapFallbackToFile("index.html");
