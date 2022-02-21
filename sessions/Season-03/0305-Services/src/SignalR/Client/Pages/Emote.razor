@@ -6,11 +6,15 @@
 @implements IAsyncDisposable
 
 <h3>Emote Demo</h3>
+<h4>@Clients clients connected</h4>
+<h4>Emote clicks: @Clicks</h4>
 
 @code {
 
 	private HubConnection hubConnection;
 	private IJSObjectReference module;
+	int Clients = 0;
+	int Clicks = 0;
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -26,6 +30,18 @@
 		hubConnection.On<int>("FlyEmote", async (buttonId) =>
 		{
 			await module.InvokeVoidAsync("flyEmote", buttonId);
+		});
+
+		hubConnection.On<int>("Count", count =>
+		{
+			Clients = count;
+			StateHasChanged();
+		});
+
+		hubConnection.On<int>("clicks", count =>
+		{
+			Clicks = count;
+			StateHasChanged();
 		});
 
 		await hubConnection.StartAsync();

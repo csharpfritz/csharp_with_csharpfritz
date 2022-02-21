@@ -1,5 +1,5 @@
 ﻿@page "/fetchdata"
-@inject HttpClient http
+@inject WeatherForecastClient client
 
 <h1>Weather forecast for @City</h1>
 
@@ -46,7 +46,6 @@ else
 
 		Console.WriteLine($"Parameters set! {_Counter++}");
 
-		var client = new WeatherForecastClient("/", http);
 		forecasts = await client.WeatherForecastAsync();
 
 	}
