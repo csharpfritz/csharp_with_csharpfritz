@@ -6,10 +6,16 @@ using Services.MinimalAPI.Shared;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSqlite<MyContext>(builder.Configuration.GetConnectionString("Sqlite"));
+builder.Services
+	.AddSqlite<MyContext>(
+		builder.Configuration.GetConnectionString("Sqlite")
+	);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddEndpointsApiExplorer(); 
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -35,7 +41,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 #region Minimal APIs for Contacts
-/* */
+/*
 app.MapGet("/api/Contacts", async (MyContext db) =>
 {
 	return Results.Ok(await db.Contacts.Select(c => c.AsViewModel()).ToArrayAsync());
@@ -83,11 +89,17 @@ app.MapDelete("/api/Contacts/{id:int}", async (MyContext db, [FromRoute] int id)
 	return Results.NotFound();
 
 });
-/* */
+*/
 #endregion
 
 
-//app.MapInstantAPIs<MyContext>();
+app.MapInstantAPIs<MyContext>();
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+	c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
+});
 
 app.MapRazorPages();
 app.MapFallbackToFile("index.html");
