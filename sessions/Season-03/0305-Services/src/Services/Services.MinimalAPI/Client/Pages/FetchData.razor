@@ -1,0 +1,83 @@
+﻿@page "/fetchdata"
+@using Services.MinimalAPI.Shared
+@inject HttpClient Http
+
+<PageTitle>Weather forecast</PageTitle>
+
+<h1>My Contacts</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (contacts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var contact in contacts)
+            {
+                <tr>
+                    <td>@contact.Id</td>
+                    <td>@contact.Name</td>
+                    <td>@contact.EmailAddress</td>
+                    <td><a href="#" @onclick="() => DeleteContact(contact.Id)" @onclick:stopPropagation @onclick:preventDefault>Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<EditForm Model="NewContact" OnValidSubmit="SaveContact">
+  <DataAnnotationsValidator></DataAnnotationsValidator>
+  <dl>
+    <dt>Name:</dt>
+    <dd>
+      <InputText @bind-Value="NewContact.Name" /> 
+      <ValidationMessage For="@(() => NewContact.Name)" />
+      </dd>
+    <dt>Email:</dt>
+    <dd>
+      <InputText @bind-Value="NewContact.EmailAddress" /> 
+      <ValidationMessage For="@(() => NewContact.EmailAddress)" />
+    </dd>
+  </dl>
+
+  <button type="submit">Save New Contact</button>
+</EditForm>
+
+@code {
+    private ContactViewModel[]? contacts;
+
+    private ContactViewModel NewContact = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        contacts = await Http.GetFromJsonAsync<ContactViewModel[]>("/api/Contacts");
+    }
+
+    async Task SaveContact()
+    {
+
+        await Http.PostAsJsonAsync("/api/Contacts", NewContact);
+        NewContact = new();
+        contacts = await Http.GetFromJsonAsync<ContactViewModel[]>("/api/Contacts");
+
+    }
+
+    async Task DeleteContact(int id)
+    {
+        await Http.DeleteAsync($"/api/Contacts/{id}");
+        contacts = await Http.GetFromJsonAsync<ContactViewModel[]>("/api/Contacts");
+    }
+
+}
