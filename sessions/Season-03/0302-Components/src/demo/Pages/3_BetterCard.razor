@@ -6,6 +6,28 @@
     Let's combine the last two examples and make a card component that allows only 1 header
 </p>
 
+<h4>TheCard source:</h4>
+<pre>
+&lt;div class="card"&gt;
+
+    &lt;CardHeader&gt;@@HeaderText&lt;/CardHeader&gt;
+
+    &lt;CardBody&gt;@@ChildContent&lt;/CardBody&gt;
+
+&lt;/div&gt;
+
+@@code {
+
+    [Parameter] 
+    [EditorRequired]
+    public string HeaderText { get; set; }
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+}    
+</pre>
+
+
 <h4>Code Sample:</h4>
 <pre>
 &lt;TheCard HeaderText="Blazor Hat"&gt;
@@ -15,4 +37,6 @@
 
 <TheCard HeaderText="Blazor Hat">
     This is one of <b>Fritz's</b> hats
+    <br/>
+    The Current Time is @DateTime.UtcNow
 </TheCard>

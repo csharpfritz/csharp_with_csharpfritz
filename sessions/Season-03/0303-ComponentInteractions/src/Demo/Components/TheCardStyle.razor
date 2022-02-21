@@ -1,7 +1,9 @@
 @using System.Collections.Generic
 
 <div class="card" @attributes="Values">
-@* <div class="card" style="@(Values != null && Values.ContainsKey("style") ? Values["style"] : "")"> *@
+@* <div class="card" 
+style="@(Values != null && Values.ContainsKey("style") ? 
+    Values["style"] : "")"> *@
 
     <CardHeader>@HeaderText</CardHeader>
 
@@ -16,6 +18,7 @@
 
     [Parameter] public RenderFragment ChildContent { get; set; }
 
-    [Parameter(CaptureUnmatchedValues=true)] public Dictionary<string,object> Values { get; set; }
+    [Parameter(CaptureUnmatchedValues=true)] 
+    public Dictionary<string,object> Values { get; set; }
 
 }

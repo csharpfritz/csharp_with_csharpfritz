@@ -1,4 +1,5 @@
 @page "/6_template"
+@* @layout FritzLayout *@
 @inject Data.HatRepository Repository
 
 <h1>Templates and RenderFragments</h1>
@@ -21,20 +22,20 @@
 </pre>
 
 <HatTemplate TItem="Hat" Items="@(Repository.Get() as ICollection<Hat>)">
-    <HatContent Context="h">
+    <ItemTemplate Context="h">
         <TheCard HeaderText="@h.Name">
             Acquired in @h.Year
         </TheCard>
-    </HatContent>
+    </ItemTemplate>
 </HatTemplate>
 
 
 <table class="table">
 <HatTemplate TItem="Hat" Items="Hat.Collection" IsFlex="false">
-    <HatContent>
+    <ItemTemplate>
         <tr>
             <td>@context.Name</td><td>@context.Year</td>
         </tr>
-    </HatContent>
+    </ItemTemplate>
 </HatTemplate>
 </table>

@@ -4,7 +4,7 @@
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
 
     @foreach (var item in Items) {
-        @HatContent(item)
+        @ItemTemplate(item)
     }
 
 </div>
@@ -12,14 +12,14 @@
 } else {
 
     @foreach (var item in Items) {
-        @HatContent(item)
+        @ItemTemplate(item)
     }
 
 }
 
 @code {
 
-    [Parameter] public RenderFragment<TItem> HatContent { get; set; }
+    [Parameter] public RenderFragment<TItem> ItemTemplate { get; set; }
 
     [Parameter] public ICollection<TItem> Items { get; set; }
 

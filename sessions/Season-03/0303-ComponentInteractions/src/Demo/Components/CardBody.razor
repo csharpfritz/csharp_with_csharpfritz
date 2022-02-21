@@ -1,10 +1,20 @@
-<div class="card-body" style="@($"color: {BodyFontColor}; background-color: {BodyBgColor}")">@ChildContent</div>
+<div class="card-body" 
+        style="@($"color: {BodyFontColor};" +
+        $"background-color: {BodyBgColor}")">
+
+    @ChildContent
+
+</div>
 
 @code {
     [Parameter] public RenderFragment ChildContent { get; set; }
     
-    [CascadingParameter(Name="bodyfontcolor")]  public string BodyFontColor { get; set; }
-    [CascadingParameter(Name="bodybgcolor")]  public string BodyBgColor { get; set; }
+    [CascadingParameter(Name="bodyfontcolor")]  
+    public string BodyFontColor { get; set; }
+    
+    
+    [CascadingParameter(Name="bodybgcolor")]  
+    public string BodyBgColor { get; set; }
 
     protected override void OnInitialized() {
 
