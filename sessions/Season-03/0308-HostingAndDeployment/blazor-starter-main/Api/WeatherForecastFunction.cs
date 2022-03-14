@@ -34,7 +34,8 @@ namespace BlazorApp.Api
 
         [FunctionName("WeatherForecast")]
         public static IActionResult Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] 
+                HttpRequest req,
             ILogger log)
         {
             var randomNumber = new Random();
