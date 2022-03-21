@@ -88,3 +88,14 @@ For a simpler approach to providing localized content, I recommend JSakamoto's T
 
 https://github.com/jsakamoto/Toolbelt.Blazor.I18nText
 
+## Humanizer
+
+I also recommend you check out Humanizer for formatting of relative dates and times using automatically translated terms.
+
+https://github.com/Humanizr/Humanizer
+
+Install it in your project with 
+
+```
+dotnet add package Humanizer
+```
