@@ -1,0 +1,44 @@
+@page "/culture-example-1"
+@using System.Globalization
+
+<h1>Culture Example 1</h1>
+
+<p>
+    <b>CurrentCulture</b>: @CultureInfo.CurrentCulture
+</p>
+
+<h2>Rendered values</h2>
+
+<ul>
+    <li><b>Date</b>: @dt</li>
+    <li><b>Number</b>: @number.ToString("N2")</li>
+</ul>
+
+<h2><code>&lt;input&gt;</code> elements that don't set a <code>type</code></h2>
+
+<p>
+    The following <code>&lt;input&gt;</code> elements use
+    <code>CultureInfo.CurrentCulture</code>.
+</p>
+
+<ul>
+    <li><label><b>Date:</b> <input @bind="dt" /></label></li>
+    <li><label><b>Number:</b> <input @bind="number" /></label></li>
+</ul>
+
+<h2><code>&lt;input&gt;</code> elements that set a <code>type</code></h2>
+
+<p>
+    The following <code>&lt;input&gt;</code> elements use
+    <code>CultureInfo.InvariantCulture</code>.
+</p>
+
+<ul>
+    <li><label><b>Date:</b> <input type="date" @bind="dt" /></label></li>
+    <li><label><b>Number:</b> <input type="number" @bind="number" /></label></li>
+</ul>
+
+@code {
+    private DateTime dt = DateTime.Now;
+    private double number = 1999.69;
+}

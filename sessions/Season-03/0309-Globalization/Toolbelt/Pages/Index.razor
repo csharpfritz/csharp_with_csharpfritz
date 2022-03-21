@@ -1,0 +1,22 @@
+﻿@page "/"
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+
+<PageTitle>Index</PageTitle>
+
+<h1>@MyText.Greeting</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code {
+
+    I18nText.MyResources MyText = new I18nText.MyResources();
+
+    protected override async Task OnInitializedAsync()
+    {
+        MyText = await I18nText.GetTextTableAsync<I18nText.MyResources>(this);
+        await base.OnInitializedAsync();
+    }
+
+}

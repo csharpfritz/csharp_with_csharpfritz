@@ -1,0 +1,16 @@
+﻿@page "/"
+@namespace Server.Pages
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+    this.HttpContext.Response.Cookies.Append(
+        CookieRequestCultureProvider.DefaultCookieName,
+        CookieRequestCultureProvider.MakeCookieValue(
+            new RequestCulture(
+                CultureInfo.CurrentCulture,
+                CultureInfo.CurrentUICulture)));    
+}
+
+<component type="typeof(App)" render-mode="ServerPrerendered" />
