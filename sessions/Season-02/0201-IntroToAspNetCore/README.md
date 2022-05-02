@@ -1,6 +1,6 @@
 # Season 2 - Episode 1: Introducing Web Development with ASP.NET Core
 
-.NET 5, and .NET Core before it was originally built to make cloud development of web applications easier and deliver the smallest and fastest web applications that take advantage of all the cloud technologies.  According to the [May 2020 Techempower benchmark](https://www.techempower.com/benchmarks/#section=data-r19&hw=ph&test=plaintext), ASP.NET Core is the fastest framework available:
+.NET 6, and .NET Core before it was originally built to make cloud development of web applications easier and deliver the smallest and fastest web applications that take advantage of all the cloud technologies.  According to the [May 2020 Techempower benchmark](https://www.techempower.com/benchmarks/#section=data-r19&hw=ph&test=plaintext), ASP.NET Core is the fastest framework available:
 
 ![Benchmark results](./img/Techempower.png)
 
