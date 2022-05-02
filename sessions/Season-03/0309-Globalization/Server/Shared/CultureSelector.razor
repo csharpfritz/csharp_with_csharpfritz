@@ -7,7 +7,7 @@
         <select @bind="Culture">
             @foreach (var culture in supportedCultures)
             {
-                <option value="@culture">@culture.DisplayName</option>
+                <option value="@culture">@culture.NativeName</option>
             }
         </select>
     </label>
@@ -19,6 +19,7 @@
     {
         new CultureInfo("en-US"),
         new CultureInfo("es"),
+        new CultureInfo("de-DE")
     };
 
     protected override void OnInitialized()

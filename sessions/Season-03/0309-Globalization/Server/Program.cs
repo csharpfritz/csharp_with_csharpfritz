@@ -22,10 +22,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// app.UseRequestLocalization(new RequestLocalizationOptions()
+//     .AddSupportedCultures(new[] { "en-US", "es", "de-DE" })
+//     .AddSupportedUICultures(new[] { "en-US", "es", "de-DE" }));
+
 /* Configure supported cultures */
-var supportedCultures = new[] { "en-US", "es" };
+var supportedCultures = new[] { "en-US", "es", "de-DE" };
 var localizationOptions = new RequestLocalizationOptions()
-    .SetDefaultCulture(supportedCultures[0])
+    // .SetDefaultCulture(supportedCultures[0])
     .AddSupportedCultures(supportedCultures)
     .AddSupportedUICultures(supportedCultures);
 app.UseRequestLocalization(localizationOptions);

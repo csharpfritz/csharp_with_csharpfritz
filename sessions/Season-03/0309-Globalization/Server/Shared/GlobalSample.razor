@@ -38,7 +38,16 @@
     <li><label><b>Number:</b> <input type="number" @bind="number" /></label></li>
 </ul>
 
+<div>Formatted date with month name:  @dt.ToString("d MMM yyyy")</div>
+
 @code {
     private DateTime dt = DateTime.Now;
     private double number = 1999.69;
+
+    void DoTheThingsForHitTab() {
+
+        var theYearOfTheDate = dt.Year;
+
+    }
+
 }

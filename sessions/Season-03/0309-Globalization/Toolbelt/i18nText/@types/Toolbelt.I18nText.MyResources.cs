@@ -3,7 +3,7 @@ namespace Toolbelt.I18nText
 {
     public partial class MyResources : global::Toolbelt.Blazor.I18nText.Interfaces.I18nTextFallbackLanguage, global::Toolbelt.Blazor.I18nText.Interfaces.I18nTextLateBinding, global::Toolbelt.Blazor.I18nText.Interfaces.I18nTextTableHash
     {
-        string global::Toolbelt.Blazor.I18nText.Interfaces.I18nTextTableHash.Hash => "4xbpydmoss";
+        string global::Toolbelt.Blazor.I18nText.Interfaces.I18nTextTableHash.Hash => "o2tvz62kin";
 
         string global::Toolbelt.Blazor.I18nText.Interfaces.I18nTextFallbackLanguage.FallBackLanguage => "en";
 
@@ -11,5 +11,8 @@ namespace Toolbelt.I18nText
 
         /// <summary>"Hello World!"</summary>
         public string Greeting;
+
+        /// <summary>"Hello World!"</summary>
+        public string Hello_World;
     }
 }
