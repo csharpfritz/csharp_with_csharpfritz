@@ -12,3 +12,8 @@ We're building on the previous state of our application that showed content load
 4. Introducing Entity Framework Core
 5. Create a DataContext
 6. Prepopulate data with Data Seeding
+
+### Notes to add:
+
+- Add link to Configuration documentation
+- Load connection string from Configuration
