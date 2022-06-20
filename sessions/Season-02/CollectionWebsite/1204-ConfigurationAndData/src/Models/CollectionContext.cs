@@ -33,6 +33,6 @@ public class CollectionContext : DbContext
         base.OnModelCreating(modelBuilder);
     }
 
-    public DbSet<CollectionItem> CollectionItems { get; set; }
+    public DbSet<CollectionItem> CollectionItems => Set<CollectionItem>();
 
 }

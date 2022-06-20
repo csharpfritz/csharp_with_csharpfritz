@@ -10,5 +10,5 @@
 
 @foreach (var item in Model)
 {
-    @Html.Partial("_ItemCard", item)
+    <partial name="_ItemCard" model="item" />
 }
