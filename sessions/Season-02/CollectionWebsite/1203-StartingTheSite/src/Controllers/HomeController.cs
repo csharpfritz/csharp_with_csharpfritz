@@ -10,7 +10,8 @@ namespace MyCollectionSite.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly HatRepository repository;
+
+private readonly HatRepository repository;
 
     public HomeController(
         ILogger<HomeController> logger, 
