@@ -1,0 +1,11 @@
+@model MyCollectionSite.Models.CollectionItem
+
+<div class="card" style="width: 18rem;">
+    <img src="@Model.ImageURL" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description</p>
+    </div>
+    <div class="card-footer">@Model.Acquired.ToString("MMM yyyy")</div>
+
+</div>
