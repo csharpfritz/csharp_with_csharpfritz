@@ -4,9 +4,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<MyCollectionSite.Models.CollectionRepository>();
-builder.Services.AddDbContext<MyCollectionSite.Models.CollectionContext>(options =>
-    options.UseSqlite("Data Source=collection.db"));
+builder.Services.AddTransient<MyCollectionSite.Models.CollectionItemRepository>();
+builder.Services.AddDbContext<MyCollectionSite.Models.CollectionContext>(
+    options => options.UseSqlite("Data Source=MyCollectionSite.db")
+);
 
 var app = builder.Build();
 

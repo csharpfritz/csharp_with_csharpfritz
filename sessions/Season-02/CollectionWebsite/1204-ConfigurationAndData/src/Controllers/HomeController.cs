@@ -16,6 +16,7 @@ private readonly CollectionRepository repository;
     public HomeController(
         ILogger<HomeController> logger, 
         CollectionRepository repository)
+
     {
         _logger = logger;
         this.repository = repository;

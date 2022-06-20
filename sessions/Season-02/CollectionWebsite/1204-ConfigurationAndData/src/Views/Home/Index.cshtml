@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<MyCollectionSite.Models.CollectionItem>
-@inject IConfiguration Config 
+@inject IConfiguration Configuration 
+
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">My @Config["CollectionType"] Collection</h1>
+    <h1 class="display-4">My @Configuration["CollectionType"] Collection</h1>
 </div>
 
 @foreach (var item in Model)
