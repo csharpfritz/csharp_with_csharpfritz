@@ -2,6 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<MyCollectionSite.Models.HatRepository>();
 
 var app = builder.Build();
 
