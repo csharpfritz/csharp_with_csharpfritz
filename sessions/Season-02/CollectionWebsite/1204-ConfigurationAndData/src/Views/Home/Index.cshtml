@@ -1,0 +1,14 @@
+﻿@model IEnumerable<MyCollectionSite.Models.CollectionItem>
+@inject IConfiguration Config 
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">My @Config["CollectionType"] Collection</h1>
+</div>
+
+@foreach (var item in Model)
+{
+    @Html.Partial("_ItemCard", item)
+}
