@@ -11,6 +11,7 @@ This folder is built to contain versions of the website as we complete them duri
 | Session | Description |
 |---------|-------------|
 | 1203 | [Creating a Collection Website](./1203-StartingTheSite/README.md) |
+| 1204 | [Configuration and Data](./1204-ConfigurationAndData/README.md)
 
 ## Design
 

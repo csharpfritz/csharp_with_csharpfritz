@@ -11,6 +11,6 @@ In this live-coded session, we will review what we learned in the first MVC sess
 5. Create sample data in JSON format
 6. Load the sample data from the JSON file
 7. Return `CollectionItem` objects to the view
-8. Introduce Configuration and Dependency Injection
+8. Introduce Dependency Injection
 9. Introduce a partial view for the `CollectionItem`
 10. Reference the partial view
