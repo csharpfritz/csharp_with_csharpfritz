@@ -15,5 +15,13 @@ We're building on the previous state of our application that showed content load
 
 ### Notes to add:
 
-- Add link to Configuration documentation
-- Load connection string from Configuration
+- More information about [Configuration](https://docs.microsoft.com/aspnet/core/fundamentals/configuration) from the Microsoft documentation website
+- You can also [load connection strings from Configuration](https://docs.microsoft.com/dotnet/api/microsoft.extensions.configuration.configurationextensions.getconnectionstring) in a `ConnectionStrings` section with code like the following: 
+
+```csharp
+builder.Services.AddDbContext<MyCollectionSite.Models.CollectionContext>(
+  options => options.UseSqlite(
+    builder.Configuration.GetConnectionString("MyConnectionString")
+  )
+);
+```
