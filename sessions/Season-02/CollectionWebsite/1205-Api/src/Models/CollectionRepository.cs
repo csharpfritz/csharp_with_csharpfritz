@@ -18,5 +18,17 @@ public class CollectionRepository
 
     }
 
+    public CollectionItem FindById(int id)
+    {
+
+        var outputValue = _context.CollectionItems
+            .FirstOrDefault(i => i.Id == id);
+
+        if (outputValue == null) return CollectionItem.NotFound;
+
+        return outputValue;
+
+    }
+
 
 }

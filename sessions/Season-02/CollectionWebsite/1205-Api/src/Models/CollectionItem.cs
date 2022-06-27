@@ -5,6 +5,8 @@ namespace MyCollectionSite.Models;
 public class CollectionItem
 {
 
+ public static CollectionItem NotFound = new CollectionItem();
+
  [Key]
  public int Id { get; set; }
 

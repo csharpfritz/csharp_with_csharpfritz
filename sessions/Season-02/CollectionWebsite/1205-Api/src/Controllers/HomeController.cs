@@ -4,6 +4,7 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using MyCollectionSite.Models;
 using System.IO;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace MyCollectionSite.Controllers;
 
@@ -30,6 +31,23 @@ private readonly CollectionRepository repository;
         return View(items);
     }
 
+    [HttpGet("/api/Items")]
+    public ActionResult<IEnumerable<CollectionItem>> GetApi()
+    {
+        return Ok(repository.Get());
+    } 
+
+    [HttpGet("/api/Items/{id:int}")]
+    public ActionResult<CollectionItem> FindItemApi(int id)
+    {
+
+        var item = repository.FindById(id);
+        return item == CollectionItem.NotFound ? 
+            NotFound() : 
+            Ok(item);
+
+    }
+
     public IActionResult Privacy()
     {
         return View();
@@ -38,6 +56,15 @@ private readonly CollectionRepository repository;
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+
+        var exceptionHandlerPathFeature =
+                HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+        var exception = exceptionHandlerPathFeature.Error;
+        ViewBag.StackTrace = exceptionHandlerPathFeature.Error.StackTrace;
+
+
+        return View(new ErrorViewModel { 
+            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier 
+        });
     }
 }
