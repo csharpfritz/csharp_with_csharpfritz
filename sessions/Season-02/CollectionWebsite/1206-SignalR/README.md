@@ -8,6 +8,6 @@ We're building on the previous state of our application by adding a live interac
 1. Add "Upvote and Downvote" buttons to items in the collection
 1. Add `VotingHub` and SignalR to our application
 1. Add JavaScript client to allow voting and publish updates immediately
-1. Discuss scaling SignalR with backplanes
+1. Discuss scaling SignalR with backplanes 
 
 Note: we will connect authentication and validation to the voting in our session about security

@@ -6,6 +6,14 @@
         <h5 class="card-title">@Model.Name</h5>
         <p class="card-text">@Model.Description</p>
     </div>
-    <div class="card-footer">@Model.Acquired.ToString("MMM yyyy")</div>
+    <div class="card-footer">@Model.Acquired.ToString("MMM yyyy")
+		
+		<div style="float:right;">
+			<span class="vote" data-id="@Model.Id" data-direction="true" style="cursor: pointer">👍</span>
+			<span class="voteCount" id="item_@Model.Id">@Model.Votes</span>
+			<span class="vote" data-id="@Model.Id" data-direction="false" style="cursor: pointer">👎</span>
+		</div>
+		
+		</div>
 
 </div>

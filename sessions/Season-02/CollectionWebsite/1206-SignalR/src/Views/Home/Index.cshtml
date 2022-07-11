@@ -13,3 +13,36 @@
 {
     <partial name="_ItemCard" model="item" />
 }
+
+@section Scripts {
+
+	<script>
+
+var connection = new signalR.HubConnectionBuilder().withUrl("/voting").build();
+
+connection.on("ReceiveVote", function (itemId, totalVotes) {
+
+    document.getElementById(`item_${itemId}`).textContent = totalVotes;
+});
+
+connection.start().catch(function (err) {
+    return console.error(err.toString());
+});
+
+var votingButtons = document.querySelectorAll(".vote");
+
+for (var i = 0; i < votingButtons.length; i++) {
+		votingButtons[i].addEventListener("click", function (event) {
+    var itemId = event.srcElement.attributes["data-id"].value;
+		var direction = event.srcElement.attributes["data-direction"].value;
+    connection.invoke("SendVote", parseInt(itemId,10), (direction == "true")).catch(function (err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+		});
+}
+
+	</script>
+
+
+}
