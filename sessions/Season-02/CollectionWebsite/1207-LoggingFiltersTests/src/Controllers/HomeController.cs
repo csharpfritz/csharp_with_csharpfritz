@@ -8,14 +8,15 @@ using Microsoft.AspNetCore.Diagnostics;
 
 namespace MyCollectionSite.Controllers;
 
+[InspectFilter]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-private readonly CollectionRepository repository;
+    private readonly CollectionRepository repository;
 
     public HomeController(
-        ILogger<HomeController> logger, 
+        ILogger<HomeController> logger,
         CollectionRepository repository)
 
     {
@@ -26,6 +27,8 @@ private readonly CollectionRepository repository;
     public IActionResult Index()
     {
 
+        var ex = new ArgumentNullException("Foo");
+        _logger.LogError(ex, "Error while processing request for the home page");
         var items = repository.Get();
 
         return View(items);
@@ -35,7 +38,7 @@ private readonly CollectionRepository repository;
     public ActionResult<IEnumerable<CollectionItem>> GetApi()
     {
         return Ok(repository.Get());
-    } 
+    }
 
     [HttpGet("/api/Items/{id:int}")]
     public ActionResult<CollectionItem> FindItemApi(int id)
@@ -43,8 +46,8 @@ private readonly CollectionRepository repository;
 
         _logger.LogInformation("Finding item with id {id}", id);
         var item = repository.FindById(id);
-        return item == CollectionItem.NotFound ? 
-            NotFound() : 
+        return item == CollectionItem.NotFound ?
+            NotFound() :
             Ok(item);
 
     }
@@ -64,8 +67,9 @@ private readonly CollectionRepository repository;
         ViewBag.StackTrace = exceptionHandlerPathFeature.Error.StackTrace;
 
 
-        return View(new ErrorViewModel { 
-            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier 
+        return View(new ErrorViewModel
+        {
+            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
         });
     }
 }
