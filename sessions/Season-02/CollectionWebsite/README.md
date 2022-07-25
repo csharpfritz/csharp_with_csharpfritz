@@ -14,6 +14,7 @@ This folder is built to contain versions of the website as we complete them duri
 | 1204 | [Configuration and Data](./1204-ConfigurationAndData/README.md) |
 | 1205 | [API and Error Handling](./1205-Api/README.md) |
 | 1206 | [SignalR and Live Data](./1206-SignalR/README.md) |
+| 1207 | [Logging, Filters, and Testing](./1207-LoggingFiltersTests/README.md) |
 
 ## Design
 
