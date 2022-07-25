@@ -13,6 +13,7 @@ This folder is built to contain versions of the website as we complete them duri
 | 1203 | [Creating a Collection Website](./1203-StartingTheSite/README.md) |
 | 1204 | [Configuration and Data](./1204-ConfigurationAndData/README.md) |
 | 1205 | [API and Error Handling](./1205-Api/README.md) |
+| 1206 | [SignalR and Live Data](./1206-SignalR/README.md) |
 
 ## Design
 
