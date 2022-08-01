@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace MyCollectionSite.Models;
 
-public class CollectionRepository 
+public class CollectionRepository : ICollectionRepository
 {
     private readonly CollectionContext _context;
 
@@ -31,22 +31,22 @@ public class CollectionRepository
 
     }
 
-		public int Vote(int id, bool direction)
-		{
+    public int Vote(int id, bool direction)
+    {
 
-			var item = FindById(id);
-			if (item == CollectionItem.NotFound) return 0;
-			
-			System.Console.WriteLine($"Voting for {item.Name}");
+        var item = FindById(id);
+        if (item == CollectionItem.NotFound) return 0;
 
-			if (direction) item.Votes++;
-			else item.Votes--;
-			
-			_context.CollectionItems.Update(item);
-			_context.SaveChanges();
+        System.Console.WriteLine($"Voting for {item.Name}");
 
-			return item.Votes;
+        if (direction) item.Votes++;
+        else item.Votes--;
 
-		}
+        _context.CollectionItems.Update(item);
+        _context.SaveChanges();
+
+        return item.Votes;
+
+    }
 
 }

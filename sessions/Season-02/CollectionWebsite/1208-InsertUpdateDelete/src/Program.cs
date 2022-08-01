@@ -1,7 +1,7 @@
 using Serilog;
-using Serilog.Events;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using MyCollectionSite.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +14,8 @@ builder.Host.UseSerilog((context, services, configuration) => configuration
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
-builder.Services.AddTransient<MyCollectionSite.Models.CollectionRepository>();
-builder.Services.AddDbContext<MyCollectionSite.Models.CollectionContext>(
+builder.Services.AddTransient<ICollectionRepository, CollectionRepository>();
+builder.Services.AddDbContext<CollectionContext>(
     options => options.UseSqlite("Data Source=MyCollectionSite.db")
 );
 

@@ -13,11 +13,11 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-    private readonly CollectionRepository repository;
+    private readonly ICollectionRepository repository;
 
     public HomeController(
         ILogger<HomeController> logger,
-        CollectionRepository repository)
+        ICollectionRepository repository)
 
     {
         _logger = logger;
