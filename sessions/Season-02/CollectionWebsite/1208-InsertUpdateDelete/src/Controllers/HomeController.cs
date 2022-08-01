@@ -63,6 +63,9 @@ public class HomeController : Controller
 
         var exceptionHandlerPathFeature =
                 HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+        
+        if (exceptionHandlerPathFeature == null) return View();
+        
         var exception = exceptionHandlerPathFeature.Error;
         ViewBag.StackTrace = exceptionHandlerPathFeature.Error.StackTrace;
 
