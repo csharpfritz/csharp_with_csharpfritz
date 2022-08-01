@@ -1,0 +1,19 @@
+@model MyCollectionSite.Models.CollectionItem
+
+<div class="card" style="width: 18rem; display: inline-block;">
+    <img src="@Model.ImageURL" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description</p>
+    </div>
+    <div class="card-footer">@Model.Acquired.ToString("MMM yyyy")
+		
+		<div style="float:right;">
+			<span class="vote" data-id="@Model.Id" data-direction="true" style="cursor: pointer">👍</span>
+			<span class="voteCount" id="item_@Model.Id">@Model.Votes</span>
+			<span class="vote" data-id="@Model.Id" data-direction="false" style="cursor: pointer">👎</span>
+		</div>
+		
+		</div>
+
+</div>
