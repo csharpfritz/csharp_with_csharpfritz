@@ -13,7 +13,10 @@ public class WhenNavigatingToTheHomePage
 
         // arrange
         var repo = new Moq.Mock<ICollectionRepository>();
-        var sut = new HomeController(NullLogger<HomeController>.Instance, repo.Object);
+        var sut = new HomeController(
+            NullLogger<HomeController>.Instance, 
+            repo.Object
+        );
 
         // act
         _ = sut.Index();

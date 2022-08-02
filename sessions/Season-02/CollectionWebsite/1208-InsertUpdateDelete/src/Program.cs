@@ -14,7 +14,7 @@ builder.Host.UseSerilog((context, services, configuration) => configuration
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
-builder.Services.AddTransient<ICollectionRepository, CollectionRepository>();
+builder.Services.AddScoped<ICollectionRepository, CollectionRepository>();
 builder.Services.AddDbContext<CollectionContext>(
     options => options.UseSqlite("Data Source=MyCollectionSite.db")
 );

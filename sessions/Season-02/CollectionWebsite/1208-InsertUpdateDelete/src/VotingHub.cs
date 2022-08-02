@@ -5,9 +5,9 @@ namespace MyCollectionSite;
 
 public class VotingHub : Hub
 {
-	private readonly CollectionRepository _repository;
+	private readonly ICollectionRepository _repository;
 
-	public VotingHub(CollectionRepository repository)
+	public VotingHub(ICollectionRepository repository)
 	{
 		_repository = repository;
 	}

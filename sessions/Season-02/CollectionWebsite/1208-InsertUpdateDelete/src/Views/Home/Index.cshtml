@@ -9,6 +9,10 @@
     <h1 class="display-4">My @Configuration["CollectionType"] Collection</h1>
 </div>
 
+<div class="row">
+<a href='@Url.Action("Create")' class="btn btn-primary col-sm-2">Add Item</a>
+</div>
+
 @foreach (var item in Model)
 {
     <partial name="_ItemCard" model="item" />

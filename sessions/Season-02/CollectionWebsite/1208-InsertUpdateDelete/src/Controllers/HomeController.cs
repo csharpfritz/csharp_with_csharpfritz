@@ -40,6 +40,35 @@ public class HomeController : Controller
         return Ok(repository.Get());
     }
 
+    [HttpGet("/api/Items/{whereNameStartsWith?}/{orderBy?}")]
+    public ActionResult<IEnumerable<CollectionItem>> GetApi(
+        string? whereNameStartsWith,
+        string? orderBy)
+    {
+
+        Func<CollectionItem,string> orderByFunc = orderBy switch
+        {
+            "name" => item => item.Name,
+            "description" => item => item.Description,
+            "votes" => item => item.Votes.ToString("000"),
+            _ => item => item.Name
+        };
+
+        // TODO: Inspect why this isn't returning
+        if (string.IsNullOrEmpty(whereNameStartsWith)) {
+            return Ok(
+                repository.Get().ToArray()
+                .OrderBy(orderByFunc)
+            );
+        }
+
+        return Ok(
+            repository.Get()
+                .Where(i => i.Name.StartsWith(whereNameStartsWith, true, null))
+                .OrderBy(orderByFunc)
+            );
+    }
+
     [HttpGet("/api/Items/{id:int}")]
     public ActionResult<CollectionItem> FindItemApi(int id)
     {
@@ -50,6 +79,11 @@ public class HomeController : Controller
             NotFound() :
             Ok(item);
 
+    }
+
+    public IActionResult Create()
+    {
+        return View();
     }
 
     public IActionResult Privacy()
@@ -64,8 +98,7 @@ public class HomeController : Controller
         var exceptionHandlerPathFeature =
                 HttpContext.Features.Get<IExceptionHandlerPathFeature>();
         
-        if (exceptionHandlerPathFeature == null) return View();
-        
+      
         var exception = exceptionHandlerPathFeature.Error;
         ViewBag.StackTrace = exceptionHandlerPathFeature.Error.StackTrace;
 
