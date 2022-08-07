@@ -9,10 +9,16 @@
     <h1 class="display-4">My @Configuration["CollectionType"] Collection</h1>
 </div>
 
-@foreach (var item in Model)
-{
-    <partial name="_ItemCard" model="item" />
-}
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+    @foreach (var item in Model)
+    {
+        <partial name="_ItemCard" model="item" />
+    }
+
+</div>
+
 
 @section Scripts {
 
