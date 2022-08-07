@@ -10,13 +10,17 @@
 </div>
 
 <div class="row">
-<a href='@Url.Action("Create")' class="btn btn-primary col-sm-2">Add Item</a>
+    <div class="col mb-3">
+        <a href='@Url.Action("Create")' class="btn btn-primary">Add Item</a>
+    </div>
 </div>
 
-@foreach (var item in Model)
-{
-    <partial name="_ItemCard" model="item" />
-}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model)
+    {
+        <partial name="_ItemCard" model="item" />
+    }
+</div>
 
 @section Scripts {
 
