@@ -38,7 +38,12 @@ builder.Services.AddDefaultIdentity<IdentityUser>(
 // 			options.AccessDeniedPath = "/Identity/Account/AccessDenied";
 // 			options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
 // 		});
-// builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options => {
+  options.AddPolicy("CanEdit", policy =>
+  {
+    policy.RequireAuthenticatedUser();
+  });
+});
 
 
 builder.Services.AddEndpointsApiExplorer();
