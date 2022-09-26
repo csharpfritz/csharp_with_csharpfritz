@@ -1,0 +1,15 @@
+[
+    {
+        "Name": "Atari",
+        "Description": "Black hat with the classic Atari logo and Japanese text for Atari under the brim",
+        "ImageURL": "https://hatcollection.blob.core.windows.net/hat-images/atari.jpg",
+        "Acquired": "2018-01-01"
+    },
+    {
+        "Name": "Blazor",
+        "Description": "White hat with purple Blazor logo",
+        "ImageURL": "https://hatcollection.blob.core.windows.net/hat-images/blazor.jpg",
+        "Acquired": "2019-04-20"
+    }
+
+]
