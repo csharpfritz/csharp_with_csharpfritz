@@ -17,6 +17,7 @@ This folder is built to contain versions of the website as we complete them duri
 | 1207 | [Logging, Filters, and Testing](./1207-LoggingFiltersTests/README.md) |
 | 1208 | [Insert, Update and Delete](./1208-InsertUpdateDelete/README.md)
 | 1209 | [Authentication and Authorization](./1209-Auth/README.md) |
+| 1210 | [Deployment](./1210-Deployment/README.md) | 
 
 ## Design
 
