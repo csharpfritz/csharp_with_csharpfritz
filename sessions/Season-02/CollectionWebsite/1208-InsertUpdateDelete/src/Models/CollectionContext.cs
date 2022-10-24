@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace MyCollectionSite.Models;
 
-public class CollectionContext : DbContext
+
+public class CollectionContext : IdentityDbContext<IdentityUser>
 {
 
     public CollectionContext(DbContextOptions<CollectionContext> options)
