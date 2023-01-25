@@ -11,7 +11,7 @@ To this point, all Math operations with the C# language have been pre-defined an
 You can now add method definitions to your interfaces and label them as `static virtual` or `static abstract` depending on whether they come with an implementation or not.  Let's look at the `System.IParsable<T>` interface:
 
 ```csharp
-IParsable<T> where T : IParseable<T>
+public interface IParsable<T> where T : IParseable<T>
 {
   static abstract T Parse(string s, IFormatProvider? provider);
 
