@@ -45,12 +45,12 @@ public partial class PokerPlayingCard : IPlayingCard<PokerPlayingCard>
 
 	public static PokerPlayingCard operator ++(PokerPlayingCard value)
 	{
-		return All[(value._value + 1) % All.Length];
+		return All[(value.Rank + 1) % All.Length];
 	}
 
 	public static PokerPlayingCard operator --(PokerPlayingCard value)
 	{
-		return All[(value._value - 1) % All.Length];
+		return All[(value.Rank - 1) % All.Length];
 	}
 
 	public static bool operator ==(PokerPlayingCard left, PokerPlayingCard right)
