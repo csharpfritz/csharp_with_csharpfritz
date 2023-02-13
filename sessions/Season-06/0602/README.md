@@ -42,7 +42,7 @@ Resource files should be placed in the _Resources_ folder of your .NET MAUI app 
 
 When a resource file is added to a .NET MAUI app project, a corresponding entry for the resource is created in the project (.csproj) file. After adding a resource file, its build action can be set in the **Properties** window. The following screenshot shows a _Resources_ folder containing image and font resources in child folders:
 
-![Image and font resources screenshot.](img/Resources.png)
+![Image and font resources screenshot.](img/Resources.PNG)
 
 Child folders of the _Resources_ folder can be designated for each resource type by editing the project file for your app:
 
