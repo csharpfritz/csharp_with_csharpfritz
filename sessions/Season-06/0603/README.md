@@ -125,7 +125,7 @@ public class BaseViewModel : INotifyPropertyChanged
 
 ### Simplifying MVVM with .NET Community Toolkit
 
-Now that you have an understanding of how MVVM works, let's look at a way to simplify development. As applications get more complex, more properties and events will be added. This leads to more boilerplate code being added. The [].NET Community Toolkit](https://github.com/CommunityToolkit/dotnet) seeks to simplify MVVM with source generators to automatically handle the code that we used to manually had to write. The `CommunityToolkit.Mvvm` library has been added to the project and we can start using it right away.
+Now that you have an understanding of how MVVM works, let's look at a way to simplify development. As applications get more complex, more properties and events will be added. This leads to more boilerplate code being added. The [.NET Community Toolkit](https://github.com/CommunityToolkit/dotnet) seeks to simplify MVVM with source generators to automatically handle the code that we used to manually had to write. The `CommunityToolkit.Mvvm` library has been added to the project and we can start using it right away.
 
 Delete all contents in `BaseViewModel.cs` and replace it with the following:
 
