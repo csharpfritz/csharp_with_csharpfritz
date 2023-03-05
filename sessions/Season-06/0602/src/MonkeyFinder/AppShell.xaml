@@ -25,12 +25,9 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-	<Page.Behaviors>
-		<toolkit:StatusBarBehavior StatusBarColor="{AppThemeBinding Light={StaticResource Transparent}, Dark={StaticResource Transparent}}" StatusBarStyle="{AppThemeBinding Light={StaticResource DarkContent}, Dark={StaticResource LightContent}}" />
-	</Page.Behaviors>
 
 
-	<ShellContent
+    <ShellContent
         Shell.NavBarIsVisible="true"
         Title="Monkeys"
         ContentTemplate="{DataTemplate view:MainPage}"
