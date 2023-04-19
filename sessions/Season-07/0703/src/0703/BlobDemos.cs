@@ -1,5 +1,5 @@
-// See https://aka.ms/new-console-template for more information
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 
 public class BlobDemos
 {
@@ -25,7 +25,7 @@ public class BlobDemos
 
         // Allocate a container client - think of this as a folder
         var folder = theClient.GetBlobContainerClient("MyFiles");
-        folder.CreateIfNotExistsAsync(Azure.Storage.Blobs.Models.PublicAccessType.None);
+        folder.CreateIfNotExistsAsync(PublicAccessType.None);
 
         // List contents
         folder.GetBlobs();
