@@ -13,4 +13,11 @@ There is an emulator you can use to work with these storage options locally, and
 
 ### Azurite Emulator
 
-The local emulator available for Azure storage (as of April 2023) is called Azurite and can be installed at: https://learn.microsoft.com/azure/storage/common/storage-use-azurite
+The local emulator available for Azure storage (as of April 2023) is called Azurite and can be installed at: https://learn.microsoft.com/azure/storage/common/storage-use-azurite  
+
+This tool writes all of your data into a folder on your local system.
+
+### Storage Explorer
+
+The Azure Storage explorer will allow you to inspect and work with data in your Azure Storage services both online and in local emulators.  More details and download a copy at:  https://azure.microsoft.com/products/storage/storage-explorer/
+
