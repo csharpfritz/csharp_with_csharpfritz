@@ -29,7 +29,9 @@ For storage accounts on Azure, you can also explore and work with data using a s
 
 ### Blobs
 
-See blob demos at: https://learn.microsoft.com/azure/storage/blobs/storage-blob-dotnet-get-started and the `BlobDemos.cs` file in the src folder
+See blob demos at: https://learn.microsoft.com/azure/storage/blobs/storage-blob-dotnet-get-started and the `BlobDemos.cs` file in the src folder.
+
+Add some docs around static website
 
 ### Queues
 

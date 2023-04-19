@@ -8,7 +8,7 @@ public class BlobDemos
     public static BlobServiceClient GetBlobClient()
     {
 
-        string sas = "BlobEndpoint=https://hatcollection.blob.core.windows.net/;QueueEndpoint=https://hatcollection.queue.core.windows.net/;FileEndpoint=https://hatcollection.file.core.windows.net/;TableEndpoint=https://hatcollection.table.core.windows.net/;SharedAccessSignature=sv=2021-12-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-04-19T19:37:30Z&st=2023-04-19T11:37:30Z&spr=https&sig=wijFLCwFPv6zgeU30F88Q%2Bn7pvYWnSm05tcirmJiN%2BI%3D";
+        string sas = "AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;";
 
         return new BlobServiceClient(sas);
 
@@ -21,22 +21,35 @@ public class BlobDemos
         var theClient = BlobDemos.GetBlobClient();
 
         // Generate your own SAS URIs
-        theClient.GenerateAccountSasUri();
+        //theClient.GenerateAccountSasUri()
 
         // Allocate a container client - think of this as a folder
-        var folder = theClient.GetBlobContainerClient("MyFiles");
-        folder.CreateIfNotExistsAsync(PublicAccessType.None);
+        var folder = theClient.GetBlobContainerClient("images");
+        folder.CreateIfNotExists(PublicAccessType.Blob);
 
         // List contents
-        folder.GetBlobs();
+        var blobs = folder.GetBlobs();
+				foreach (var blob in blobs)
+				{
+						System.Console.WriteLine(blob.Name);
+				}
 
-        // Upload a file
-        folder.UploadBlobAsync();
 
-        // Get files
-        var theBlob = folder.GetBlobClient("myfile");
+        // // Upload a file
+				var ms = new MemoryStream();
+				var sw = new StreamWriter(ms);
+				sw.WriteLine("Hello, World!");
+				sw.Flush();
+				ms.Position = 0;
+        folder.UploadBlob("myfile.txt", ms);
+
+        // // Get files
+        var theBlob = folder.GetBlobClient("myfile.txt");
         var myStream = new MemoryStream();
-        theBlob.DownloadToAsync(myStream);
+        theBlob.DownloadTo(myStream);
+				myStream.Position = 0;
+				var sr = new StreamReader(myStream);
+				System.Console.WriteLine(sr.ReadToEnd());
 
     }
 

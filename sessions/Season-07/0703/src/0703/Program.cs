@@ -1,3 +1,7 @@
 ﻿
-Console.WriteLine("Hello, World!");
+// BlobDemos.Demo();
 
+// QueueDemo.Demo();
+
+//TableDemos.Demo();
+TableDemos.DemoQueries();
