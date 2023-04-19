@@ -21,3 +21,10 @@ This tool writes all of your data into a folder on your local system.
 
 The Azure Storage explorer will allow you to inspect and work with data in your Azure Storage services both online and in local emulators.  More details and download a copy at:  https://azure.microsoft.com/products/storage/storage-explorer/
 
+For storage accounts on Azure, you can also explore and work with data using a similar experience in the Azure Portal under the **Storage Browser** link on the left menu.
+
+![Storage Browser](img/portal-storagebrowser.PNG)
+
+## Interacting with Storage using C#
+
+See blob demos at: https://learn.microsoft.com/azure/storage/blobs/storage-blob-dotnet-get-started
