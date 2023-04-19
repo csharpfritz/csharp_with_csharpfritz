@@ -42,6 +42,12 @@
         Margin="0,0,0,8"/>
 
 			<VerticalStackLayout Grid.Row="2" Padding="10" Spacing="10">
+				<Button Text="Show on Map" 
+					Command="{Binding OpenMapCommand}"
+					HorizontalOptions="Center" 
+					WidthRequest="200" 
+					Margin="8"
+					Style="{StaticResource ButtonOutline}"/>
 				<Label Style="{StaticResource MediumLabel}" Text="{Binding Monkey.Details}" />
 				<Label Style="{StaticResource SmallLabel}" Text="{Binding Monkey.Location, StringFormat='Location: {0}'}" />
 				<Label Style="{StaticResource SmallLabel}" Text="{Binding Monkey.Population, StringFormat='Population: {0}'}" />
