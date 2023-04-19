@@ -4,7 +4,7 @@ Azure Storage is the easiest way to store and work with data on the Azure cloud 
 
 - **Blobs** - Files and blocks of data that can be stored and retrieved.  File content can also be accessed in a web browser
 - **Tables** - Schemaless storage of data identified by a partition key and a row key.
-- **Queues** - First in - First out storage that can be used to store a small block of text
+- **Queues** - First in - First out storage that can be used to store a small block of text up to 64kb that is able to be stored in an XML document.
 - **File Shares** - File system storage that is used by App Service. 
 
 ## Work with storage locally
@@ -27,4 +27,17 @@ For storage accounts on Azure, you can also explore and work with data using a s
 
 ## Interacting with Storage using C#
 
-See blob demos at: https://learn.microsoft.com/azure/storage/blobs/storage-blob-dotnet-get-started
+### Blobs
+
+See blob demos at: https://learn.microsoft.com/azure/storage/blobs/storage-blob-dotnet-get-started and the `BlobDemos.cs` file in the src folder
+
+### Queues
+
+See the queue demos at: https://learn.microsoft.com/azure/storage/queues/storage-dotnet-how-to-use-queues?tabs=dotnet
+
+***Recommendation***
+Always push and read messages from a queue using Base64 encoding.  This avoids any issues with storage in XML format
+
+### Tables
+
+See the tables demos at: https://learn.microsoft.com/azure/cosmos-db/table/quickstart-dotnet
