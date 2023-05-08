@@ -67,6 +67,8 @@ public class ReceiveMessages
 		string body = args.Message.Body.ToString();
 		Console.WriteLine($"Received: {body}");
 
+		// throw new Exception("Exception in MessageHandler");
+
 		// complete the message. message is deleted from the queue. 
 		await args.CompleteMessageAsync(args.Message);
 	}

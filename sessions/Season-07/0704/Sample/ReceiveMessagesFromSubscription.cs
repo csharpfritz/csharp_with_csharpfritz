@@ -24,6 +24,7 @@ public class ReceiveMessagesFromSubscription
 
 		try
 		{
+
 			// add handler to process messages
 			processor.ProcessMessageAsync += MessageHandler;
 

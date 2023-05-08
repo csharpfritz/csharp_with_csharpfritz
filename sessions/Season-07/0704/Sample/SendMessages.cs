@@ -21,7 +21,6 @@ public class SendMessages
 		// set the transport type to AmqpWebSockets so that the ServiceBusClient uses the port 443. 
 		// If you use the default AmqpTcp, you will need to make sure that the ports 5671 and 5672 are open
 
-		// TODO: Replace the <NAMESPACE-CONNECTION-STRING> and <QUEUE-NAME> placeholders
 		var clientOptions = new ServiceBusClientOptions()
 		{
 			TransportType = ServiceBusTransportType.AmqpWebSockets
