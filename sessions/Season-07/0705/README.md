@@ -53,6 +53,8 @@ There are APIs and structures available in CosmosDb to support connecting and us
 
 CosmosDb has a free configuration available that allows you to deploy a single 25 GB database instance with 1000 RU/s.
 
+There is a [local emulator](https://learn.microsoft.com/azure/cosmos-db/local-emulator) available for developers that want to test working with Cosmos Db locally. 
+
 ## Redis
 
 [Azure Redis Cache](https://learn.microsoft.com/azure/azure-cache-for-redis/cache-overview) is the high-speed in-memory key-value pair solution that can turbo-charge your application.
