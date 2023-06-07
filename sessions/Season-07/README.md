@@ -10,3 +10,4 @@ In this series of episodes we will learn about how we can use our C# skills to b
 | 0702 | [Serverless C# with Azure Functions](0702/README.md) |
 | 0703 | [Easy and Reliable Storage with Azure Storage](0703/README.md) |
 | 0704 | [Azure Service Bus with .NET](0704/README.md) |
+| 0705 | [Databases on Azure](0705/README.md) |
