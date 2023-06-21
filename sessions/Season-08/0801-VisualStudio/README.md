@@ -39,7 +39,9 @@ Try the **C# Interactive** window to get a REPL experience where you can experim
 ## Code Navigation Tips
 
 - `Ctrl+F` to find text in the current file
+- `Ctrl+H` to find and replace text in the current file
 - `Ctrl+Shift+F` to find text in the current solution / project with options including regular expressions
+- `Ctrl+Shift+H` to find and replace text in the current solution / project with options including regular expressions
 - `Ctrl+Q` - Search features of Visual Studio
 - `Ctrl+T` - Search your code - filenames, classes, interfaces, methods, properties, events, enums
 - `Ctrl+G` - Goto line number
