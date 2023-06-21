@@ -38,6 +38,8 @@ Try the **C# Interactive** window to get a REPL experience where you can experim
 
 ## Code Navigation Tips
 
+- `Ctrl+F` to find text in the current file
+- `Ctrl+Shift+F` to find text in the current solution / project with options including regular expressions
 - `Ctrl+Q` - Search features of Visual Studio
 - `Ctrl+T` - Search your code - filenames, classes, interfaces, methods, properties, events, enums
 - `Ctrl+G` - Goto line number
@@ -48,6 +50,8 @@ Try the **C# Interactive** window to get a REPL experience where you can experim
 - `Previous Mouse Button` to navigate to the previous code location
 - `Next Mouse Button` to navigate to the next code location
 - `Ctrl+M M` to collapse / expand the current block of code
+
+Hold Alt while selecting lines vertically to select a block of code and work with all of it at once
 
 ### Bookmarks
 
