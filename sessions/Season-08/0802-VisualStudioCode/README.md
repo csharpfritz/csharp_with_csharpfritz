@@ -81,6 +81,10 @@ More advanced debugging capabilities available:
 - Debug inside a Docker container
 - Debug inside Windows Subsystem for Linux
 
+## The Terminal
+
+- The terminal can be opened by pressing <code>Ctrl+`</Code>
+
 ## Make Visual Studio yours
 
 - Get your favorite themes from the [marketplace](https://marketplace.visualstudio.com/search?target=VSCode&category=Themes&sortBy=Installs)
